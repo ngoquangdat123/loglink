@@ -7,27 +7,37 @@ import Landing from "./views/Landing.vue";
 import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
+import Home from "./views/Home.vue";
 
 Vue.use(Router);
 
 export default new Router({
   linkExactActiveClass: "active",
   routes: [
-    {
-      path: "/",
-      name: "components",
+   {
+      path: "/landing",
+      name: "Landing",
       components: {
         header: AppHeader,
-        default: Components,
+        default: Landing,
         footer: AppFooter
       }
     },
     {
-      path: "/landing",
-      name: "landing",
+      path: "/",
+      name: "Home",
       components: {
         header: AppHeader,
-        default: Landing,
+        default: Home,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/components",
+      name: "components",
+      components: {
+        header: AppHeader,
+        default: Components,
         footer: AppFooter
       }
     },
