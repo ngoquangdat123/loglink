@@ -26,8 +26,6 @@
             <h3>Logistics made easy through digital solutions</h3>
             <p>
               We make it easy to manage your shipments and logistics online.
-              From finding a price and making bookings to submitting documents
-              and tracking cargo.
             </p>
             <ul class="list-unstyled mt-5">
               <li class="py-2">
@@ -39,8 +37,7 @@
                     </h6>
                     <p>
                       Learn more about our shipping services from 300 ports
-                      around the world. Maersk can connect your business
-                      globally and we make shipping simple.
+                      around the world.
                     </p>
                   </div>
                 </div>
@@ -54,8 +51,7 @@
                     </h6>
                     <p>
                       Learn more about our shipping services from 300 ports
-                      around the world. Maersk can connect your business
-                      globally and we make shipping simple.
+                      around the world.
                     </p>
                   </div>
                 </div>
@@ -67,8 +63,7 @@
                     <h6 class="mb-0 font-weight-bold">Forwarding Services</h6>
                     <p>
                       Learn more about our shipping services from 300 ports
-                      around the world. Maersk can connect your business
-                      globally and we make shipping simple.
+                      around the world.
                     </p>
                   </div>
                 </div>
