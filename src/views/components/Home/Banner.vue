@@ -1,13 +1,13 @@
 <template>
-  <section class="section section-lg section-shaped overflow-hidden my-0">
-    <div class="shape shape-style-1 shape-default shape-skew">
+  <section class="section overflow-hidden my-0 pt-0">
+    <!-- <div class="shape shape-style-1 shape-default shape-skew">
       <span></span>
       <span></span>
       <span></span>
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </div> -->
     <div class="py-0 pb-lg">
       <div class="row justify-content-between align-items-center">
         <div class="col-lg-12 mb-lg-auto">
@@ -44,5 +44,5 @@ export default {
   },
 };
 </script>
-<style>
-</style>
+<style lang="scss" scoped>
+</style>>
