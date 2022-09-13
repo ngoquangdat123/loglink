@@ -16,13 +16,13 @@
               <card class="border-0" hover shadow body-classes="p-0">
                 <img src="img/home/ground-shipping.jpg" class="img-ourkey" />
                 <div class="py-5 px-4">
-                  <icon
+                  <!-- <icon
                     name="ni ni-check-bold"
                     type="primary"
                     rounded
                     class="mb-4"
                   >
-                  </icon>
+                  </icon> -->
                   <h6 class="text-primary text-uppercase">Ground Shipping</h6>
                   <p class="description mt-3">
                     Lorem ipsum dolor, consectetur adipisicing elit. Similique
@@ -43,13 +43,13 @@
               <card class="border-0" hover shadow body-classes="p-0">
                 <img src="img/home/big-project.jpg" class="img-ourkey" />
                 <div class="py-5 px-4">
-                  <icon
+                  <!-- <icon
                     name="ni ni-istanbul"
                     type="success"
                     rounded
                     class="mb-4"
                   >
-                  </icon>
+                  </icon> -->
                   <h6 class="text-success text-uppercase">Large Project</h6>
                   <p class="description mt-3">
                     Lorem ipsum dolor, consectetur adipisicing elit. Similique
@@ -71,8 +71,8 @@
               <card class="border-0" hover shadow body-classes="p-0">
                 <img src="img/home/airfreight.jpg" class="img-ourkey" />
                 <div class="py-5 px-4">
-                  <icon name="ni ni-planet" type="warning" rounded class="mb-4">
-                  </icon>
+                  <!-- <icon name="ni ni-planet" type="warning" rounded class="mb-4">
+                  </icon> -->
                   <h6 class="text-warning text-uppercase">Air Freight</h6>
                   <p class="description mt-3">
                     Lorem ipsum dolor, consectetur adipisicing elit. Similique
