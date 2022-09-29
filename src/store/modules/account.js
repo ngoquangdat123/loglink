@@ -1,4 +1,5 @@
 import { userService } from '../../services';
+import router from "@/router"
 
 const user = JSON.parse(localStorage.getItem('user'));
 const state = user
@@ -32,7 +33,7 @@ const actions = {
             .then(
                 user => {
                     commit('registerSuccess', user);
-                    this.router.push('/login');
+                    router.push('/login');
                     setTimeout(() => {
                         // hiển thị message thành công sau redirect sang trang 
                         dispatch('alert/success', 'Registration successful', { root: true });
