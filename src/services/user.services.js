@@ -16,14 +16,15 @@ function login(email, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ username: email, password: password, rememberMe: false })
     };
 
     return fetch(`${apiUrl}/api/authenticate`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // login thành công nếu có một token jwt trong response
-            if (user.token) {
+            if (user.id_token) {
+                console.log('=========iser', user);
                 // lưu dữ liệu user và token jwt vào local storage để giữ user được log in trong page
                 localStorage.setItem('user', JSON.stringify(user));
             }

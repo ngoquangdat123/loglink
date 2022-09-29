@@ -1,6 +1,6 @@
 export const appRoot = '/app'
-export const homeUrl = 'https://loglinklogistic.herokuapp.com/'
-export const apiUrl = 'https://llgen.herokuapp.com/'
+export const homeUrl = 'https://loglinklogistic.herokuapp.com'
+export const apiUrl = 'https://llgen.herokuapp.com'
 
 export const defaultLocale = 'en'
 export const localeOptions = [
