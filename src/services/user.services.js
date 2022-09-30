@@ -6,6 +6,7 @@ export const userService = {
     login,
     logout,
     register,
+    fetchCurrentUser,
     getAll,
     getById,
     update,
@@ -22,20 +23,25 @@ function login(email, password) {
     return fetch(`${apiUrl}/api/authenticate`, requestOptions)
         .then(handleResponse)
         .then(user => {
-            // login thành công nếu có một token jwt trong response
             if (user.id_token) {
-                console.log('=========iser', user);
-                // lưu dữ liệu user và token jwt vào local storage để giữ user được log in trong page
                 localStorage.setItem('user', JSON.stringify(user));
             }
-
             return user;
         });
 }
 
 function logout() {
-    // xoá user từ local storage để log out
     localStorage.removeItem('user');
+    localStorage.removeItem('currentUser');
+}
+
+function fetchCurrentUser () {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch(`${apiUrl}/api/account`, requestOptions).then(handleResponse);
 }
 
 function register(user) {

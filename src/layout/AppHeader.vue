@@ -206,12 +206,58 @@
                   </a>
                 </li>
               </ul>
-              <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+              <ul  class="navbar-nav align-items-lg-center ml-lg-auto">
                 <li class="nav-item d-none d-lg-block ml-lg-4">
-                  <div class="btn-wrapper">
+                  <div v-if="!Object.keys(currentUser).length" class="btn-wrapper">
                     <router-link to="/login" class="btn btn-success">
                       Login Page
                     </router-link>
+                  </div>
+                  <div
+                      v-else
+                      class="user-logged desktop"
+                  >
+                    <div class="user-logged__header">
+                      <div class="information">
+                        <img
+                            alt="Circle image" class="img-fluid rounded-circle shadow avatar"
+                            data-src="img/theme/team-2-800x800.jpg" src="img/theme/team-2-800x800.jpg"
+                        >
+                        <div class="arrow-down"></div>
+                        <div class="information__content">
+                          <ul class="list-menu">
+                            <li
+                                class="item"
+                            >
+                              <router-link
+                                  class="nav-link"
+                                  :to="'/account/settings'"
+                              >
+                                <span class="fa fa-cog" />
+                                <span class="name">Cài đặt</span>
+                              </router-link>
+                            </li>
+                            <li
+                                class="item"
+                            >
+                              <router-link
+                                  class="nav-link"
+                                  :to="'/account/forgot-pass'"
+                              >
+                                <span class="fa fa-key" />
+                                <span class="name">Quên mật khẩu</span>
+                              </router-link>
+                            </li>
+                            <li class="item">
+                              <a class="nav-link log-out" @click="onLogout">
+                                <span class="fa fa-sign-out"></span>
+                                <span class="name">Đăng xuất</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </li>
               </ul>
@@ -226,13 +272,21 @@
 import BaseNav from "@/components/BaseNav";
 import BaseDropdown from "@/components/BaseDropdown";
 import CloseButton from "@/components/CloseButton";
-
+import globalMixins from '../mixins/global'
+import { mapState, mapActions } from "vuex";
 export default {
   components: {
     BaseNav,
     CloseButton,
     BaseDropdown,
   },
+  methods: {
+    ...mapActions("account", ["logout"]),
+    onLogout() {
+      this.logout();
+    }
+  },
+  mixins: [globalMixins]
 };
 </script>
 <style lang="scss" scoped src="../assets/scss/layout/header.scss">
@@ -241,4 +295,5 @@ export default {
     background: #131313;
   }
 }
+
 </style>>
