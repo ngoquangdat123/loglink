@@ -8,6 +8,9 @@ import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
 import Home from "./views/Home.vue";
+import Auction from "./views/auction";
+import CreateAuction from "./views/auction/create-auction";
+import AuctionDetail from "./views/auction/detail";
 
 Vue.use(Router);
 
@@ -65,6 +68,33 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Profile,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/auction",
+      name: "auction",
+      components: {
+        header: AppHeader,
+        default: Auction,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/auction/new",
+      name: "createAuction",
+      components: {
+        header: AppHeader,
+        default: CreateAuction,
+        footer: AppFooter
+      }
+    },
+    {
+      path: "/auction/detail",
+      name: "AuctionDetail",
+      components: {
+        header: AppHeader,
+        default: AuctionDetail,
         footer: AppFooter
       }
     }
