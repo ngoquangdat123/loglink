@@ -6,3 +6,7 @@
 @import "./mixins/icon.scss";
 @import "./mixins/modals.scss";
 @import "./mixins/popover.scss";
+@function px2vw($number, $base-vw: 375px) {
+  $vwSize: ($number*100)/$base-vw;
+  @return #{$vwSize}vw;
+}

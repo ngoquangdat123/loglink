@@ -14,7 +14,7 @@
                           src="/img/home/logo-black.png"
                           alt=""
                           width="120"
-                        />
+                        >
                       </a>
                     </div>
                   </div>
@@ -28,9 +28,9 @@
                     <div class="footer-subscribe">
                       <form action="#">
                         <div class="form-group">
-                          <input type="text" placeholder="Enter your mail" />
+                          <input type="text" placeholder="Enter your mail">
                           <button type="submit">
-                            <i class="fa fa-envelope"></i>
+                            <i class="fa fa-envelope" />
                           </button>
                         </div>
                       </form>
@@ -73,7 +73,7 @@
                               Lorem ipsum dolor sit adipisicing elit.
                             </a>
                             <p>
-                              <i class="icofont icofont-clock-time"></i> 24 min
+                              <i class="icofont icofont-clock-time" /> 24 min
                               ago
                             </p>
                           </div>
@@ -87,7 +87,7 @@
                               Lorem ipsum dolor sit adipisicing elit.
                             </a>
                             <p>
-                              <i class="icofont icofont-clock-time"></i> 24 min
+                              <i class="icofont icofont-clock-time" /> 24 min
                               ago
                             </p>
                           </div>
@@ -106,7 +106,7 @@
                     <ul>
                       <li>
                         <div class="footer-info-icon">
-                          <i class="fa fa-home"></i>
+                          <i class="fa fa-home" />
                         </div>
                         <div class="footer-info-text">
                           123 Eccles Old Road, Salford Road, East London, Uk, M6
@@ -115,7 +115,7 @@
                       </li>
                       <li>
                         <div class="footer-info-icon">
-                          <i class="fa fa-envelope"></i>
+                          <i class="fa fa-envelope" />
                         </div>
                         <div class="footer-info-text">
                           support@yourdomain.com
@@ -123,7 +123,7 @@
                       </li>
                       <li>
                         <div class="footer-info-icon">
-                          <i class="fa fa-phone"></i>
+                          <i class="fa fa-phone" />
                         </div>
                         <div class="footer-info-text">+02154485425</div>
                       </li>
@@ -133,16 +133,16 @@
                     <div class="social-icon">
                       <ul>
                         <li>
-                          <a href="#"> <i class="fa fa-facebook"></i> </a>
+                          <a href="#"> <i class="fa fa-facebook" /> </a>
                         </li>
                         <li>
-                          <a href="#"> <i class="fa fa-twitter"></i> </a>
+                          <a href="#"> <i class="fa fa-twitter" /> </a>
                         </li>
                         <li>
-                          <a href="#"> <i class="fa fa-linkedin"></i> </a>
+                          <a href="#"> <i class="fa fa-linkedin" /> </a>
                         </li>
                         <li>
-                          <a href="#"> <i class="fa fa-rss"></i> </a>
+                          <a href="#"> <i class="fa fa-rss" /> </a>
                         </li>
                       </ul>
                     </div>
@@ -168,24 +168,36 @@
           <div class="col-md-6">
             <ul class="nav nav-footer justify-content-end">
               <li class="nav-item">
-                <a href="#" class="nav-link" target="_blank" rel="noopener"
-                  >Home</a
-                >
+                <a
+                  href="#"
+                  class="nav-link"
+                  target="_blank"
+                  rel="noopener"
+                >Home</a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link" target="_blank" rel="noopener"
-                  >Services</a
-                >
+                <a
+                  href="#"
+                  class="nav-link"
+                  target="_blank"
+                  rel="noopener"
+                >Services</a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link" target="_blank" rel="noopener"
-                  >Tracking</a
-                >
+                <a
+                  href="#"
+                  class="nav-link"
+                  target="_blank"
+                  rel="noopener"
+                >Tracking</a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link" target="_blank" rel="noopener"
-                  >Contact</a
-                >
+                <a
+                  href="#"
+                  class="nav-link"
+                  target="_blank"
+                  rel="noopener"
+                >Contact</a>
               </li>
             </ul>
           </div>
@@ -196,13 +208,13 @@
 </template>
 <script>
 export default {
-  name: "app-footer",
-  data() {
+  name: 'AppFooter',
+  data () {
     return {
-      year: new Date().getFullYear(),
-    };
-  },
-};
+      year: new Date().getFullYear()
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .footer {
