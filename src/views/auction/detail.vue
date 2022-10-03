@@ -1,5 +1,5 @@
 <template>
-  <section class="section section-lg section-shaped overflow-hidden my-0">
+  <section class="section">
     <DetailAuction />
   </section>
 </template>

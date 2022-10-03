@@ -1,10 +1,10 @@
 <template>
   <div class="container detail-auction">
     <div class="detail-auction__header">
-      <h3>Chi tiết bản đấu giá</h3>
+      <h2 class="text-center">Chi tiết bản đấu giá</h2>
     </div>
     <div class="detail-auction__content">
-      <div class="row"></div>
+      <div class=""></div>
     </div>
   </div>
 </template>
@@ -32,8 +32,13 @@ export default {
 .detail-auction {
   &__header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 3rem;
+    h2 {
+      font-size: 3.3rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
   }
 }
 </style>>
