@@ -1,9 +1,15 @@
 <template>
   <div class="container detail-auction">
     <div class="detail-auction__header">
-      <h2 class="text-center">Chi tiết bản đấu giá</h2>
+      <h2 class="text-center">Chi tiết bản đấu giá #{{ item.id }}</h2>
     </div>
-    <div class="detail-auction__content">
+    <div class="detail-auction__content shadow">
+      <div class="detail-auction__breadcrumb">
+        <a @click="$router.push('/auction')">
+          <img src="img/auction/icon-back.svg" class="icon-back">
+          <span>Back to auction list</span>
+        </a>
+      </div>
       <div class="content-top">
         <div class="top-item">
           <img src="img/auction/icon-plain.png" class="icon-start">
@@ -28,7 +34,7 @@
           <span class="value">{{ item.destination }}</span>
         </div>
       </div>
-      <div class="content-card shadow">
+      <div class="content-card">
         <div class="item-field">
           <span class="label">Opening: </span>
           <span class="value">{{ item.opening }}</span>
@@ -162,6 +168,12 @@
           <span class="value">{{ item.winnerIdLogin }}</span>
         </div>
       </div>
+      <div class="detail-auction__action">
+        <button type="button" class="btn btn-primary">Báo giá</button>
+        <button type="button" class="btn btn-primary">Xem báo giá</button>
+        <button type="button" class="btn btn-primary">Cập nhật</button>
+        <button type="button" class="btn btn-danger">Xóa</button>
+      </div>
     </div>
   </div>
 </template>
@@ -188,16 +200,33 @@ export default {
 <style lang="scss" scoped>
 .detail-auction {
   &__header {
-    display: flex;
-    justify-content: center;
     margin-bottom: 4rem;
     h2 {
       font-size: 40px;
       font-weight: 700;
       line-height: 1.3;
+      text-align: center;
+    }
+  }
+  &__breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    img {
+      margin-right: 5px;
+    }
+    a {
+      cursor: pointer;
+      font-weight: 600;
     }
   }
   &__content {
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0.0625rem solid rgba(0, 0, 0, 0.05);
+    border-radius: 0.25rem;
+    padding: 2rem;
     .content-top {
       padding: 0 100px;
       display: flex;
@@ -293,13 +322,6 @@ export default {
         }
       }
     }
-    .content-card {
-      background-color: #fff;
-      background-clip: border-box;
-      border: 0.0625rem solid rgba(0, 0, 0, 0.05);
-      border-radius: 0.25rem;
-      padding: 2rem;
-    }
     .item-field {
       display: flex;
       align-content: center;
@@ -313,6 +335,15 @@ export default {
         border: none;
         padding-bottom: 0;
       }
+    }
+  }
+  &__action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    .btn {
+      border-radius: 0;
     }
   }
 }
