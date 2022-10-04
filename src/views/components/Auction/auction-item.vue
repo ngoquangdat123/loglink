@@ -20,22 +20,33 @@ export default {
   props: {
     item: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
-  data() {
-    return {};
+  data () {
+    return {}
   },
   methods: {
-    onViewDetail(id) {
-      this.$router.push(`/auction/detail?id=${id}`);
-    },
-  },
-};
+    onViewDetail (id) {
+      this.$router.push(`/auction/detail?id=${id}`)
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">
 .auction-item {
+  background: #000000;
   cursor: pointer;
+  background-image: url('/img/auction/bg-auction.png');
+  background-size: cover;
+  .card-body {
+    color: #ffffff;
+    p {
+      white-space: nowrap;
+      text-overflow: hidden;
+      overflow: ellipsis;
+    }
+  }
 }
 </style>

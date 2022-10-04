@@ -7,8 +7,7 @@
         class="btn btn-3 btn-icon btn-success"
         @click="$router.push('/auction/new')"
       >
-        <span class="btn-inner--icon"><i class="ni ni-fat-add"></i></span
-        ><span class="btn-inner--text">Thêm mới một đấu giá</span>
+        <span class="btn-inner--icon"><i class="ni ni-fat-add" /></span><span class="btn-inner--text">Thêm mới một đấu giá</span>
       </button>
     </div>
     <div v-if="auctions && auctions.length" class="row">
@@ -19,26 +18,26 @@
   </div>
 </template>
 <script>
-import { auctionService } from "../../../services/auction.service";
-import AuctionItem from "./auction-item.vue";
+import { auctionService } from '../../../services/auction.service'
+import AuctionItem from './auction-item.vue'
 export default {
   components: {
-    AuctionItem,
+    AuctionItem
   },
-  data() {
+  data () {
     return {
-      auctions: [],
-    };
+      auctions: []
+    }
   },
-  created() {
-    this.getAuctions();
+  created () {
+    this.getAuctions()
   },
   methods: {
-    async getAuctions() {
-      this.auctions = await auctionService.getAuction();
-    },
-  },
-};
+    async getAuctions () {
+      this.auctions = await auctionService.getAuction()
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .auction {
@@ -51,4 +50,5 @@ export default {
     }
   }
 }
-</style>>
+</style>
+>
