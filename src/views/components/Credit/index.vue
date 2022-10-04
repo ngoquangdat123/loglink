@@ -1,11 +1,11 @@
 <template>
   <div class="container auction">
     <div class="auction__header">
-      <h3>Danh Sách đấu giá</h3>
+      <h3>Credit</h3>
       <button
         type="button"
         class="btn btn-3 btn-icon btn-primary"
-        @click="$router.push('/auction/new')"
+        @click="$router.push('/credit/new')"
       >
         <span class="btn-inner--icon"><i class="ni ni-fat-add" /></span><span class="btn-inner--text">Thêm mới</span>
       </button>
@@ -19,7 +19,7 @@
 </template>
 <script>
 import { auctionService } from '../../../services/auction.service'
-import AuctionItem from './auction-item.vue'
+import AuctionItem from './CreditItem.vue'
 export default {
   components: {
     AuctionItem

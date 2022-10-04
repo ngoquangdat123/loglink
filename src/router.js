@@ -11,20 +11,21 @@ import Home from "./views/Home.vue";
 import Auction from "./views/auction";
 import CreateAuction from "./views/auction/create-auction";
 import AuctionDetail from "./views/auction/detail";
+import Credit from "./views/credit";
 
 Vue.use(Router);
 
 export default new Router({
   linkExactActiveClass: "active",
   routes: [
-   {
+    {
       path: "/landing",
       name: "Landing",
       components: {
         header: AppHeader,
         default: Landing,
-        footer: AppFooter
-      }
+        footer: AppFooter,
+      },
     },
     {
       path: "/",
@@ -32,8 +33,8 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Home,
-        footer: AppFooter
-      }
+        footer: AppFooter,
+      },
     },
     {
       path: "/components",
@@ -41,8 +42,8 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Components,
-        footer: AppFooter
-      }
+        footer: AppFooter,
+      },
     },
     {
       path: "/login",
@@ -50,8 +51,8 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Login,
-        footer: AppFooter
-      }
+        footer: AppFooter,
+      },
     },
     {
       path: "/register",
@@ -59,8 +60,8 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Register,
-        footer: AppFooter
-      }
+        footer: AppFooter,
+      },
     },
     {
       path: "/profile",
@@ -68,8 +69,8 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Profile,
-        footer: AppFooter
-      }
+        footer: AppFooter,
+      },
     },
     {
       path: "/auction",
@@ -77,8 +78,8 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Auction,
-        footer: AppFooter
-      }
+        footer: AppFooter,
+      },
     },
     {
       path: "/auction/new",
@@ -86,8 +87,8 @@ export default new Router({
       components: {
         header: AppHeader,
         default: CreateAuction,
-        footer: AppFooter
-      }
+        footer: AppFooter,
+      },
     },
     {
       path: "/auction/detail",
@@ -95,15 +96,24 @@ export default new Router({
       components: {
         header: AppHeader,
         default: AuctionDetail,
-        footer: AppFooter
-      }
-    }
+        footer: AppFooter,
+      },
+    },
+    {
+      path: "/credit",
+      name: "Credit",
+      components: {
+        header: AppHeader,
+        default: Credit,
+        footer: AppFooter,
+      },
+    },
   ],
-  scrollBehavior: to => {
+  scrollBehavior: (to) => {
     if (to.hash) {
       return { selector: to.hash };
     } else {
       return { x: 0, y: 0 };
     }
-  }
+  },
 });
