@@ -1,19 +1,19 @@
 <template>
-  <div class="container credit">
-    <div class="credit__header">
-      <h3>Credits</h3>
+  <div class="container transport">
+    <div class="transport__header">
+      <h3>Transports</h3>
       <button
         type="button"
         class="btn btn-3 btn-icon btn-primary"
-        @click="$router.push('/credit/new')"
+        @click="$router.push('/transport/new')"
       >
         <span class="btn-inner--icon"><i class="ni ni-fat-add" /></span><span class="btn-inner--text">Thêm mới</span>
       </button>
     </div>
     <div >
-      <b-table  hover :items="credits" :fields="fields" head-variant="light">
+      <b-table  hover :items="transports" :fields="fields" head-variant="light">
         <template #cell(action)="data">
-          <button type="button" @click="$router.push(`/credit/detail/${data.item.id}`)" class="btn btn-primary">Xem</button>
+          <button type="button" @click="$router.push(`/transport/detail/${data.item.id}`)" class="btn btn-primary">Xem</button>
           <button type="button" class="btn btn-warning">Sửa</button>
           <button type="button" class="btn btn-danger">xóa</button>
       </template>
@@ -22,28 +22,28 @@
   </div>
 </template>
 <script>
-import { creditService } from '../../../services/credit.service'
+import { transportService } from '../../../services/transport.service'
 export default {
   components: {
   },
   data () {
     return {
-      credits: [],
-      fields: ['id', 'credit', 'userCreditLogin', 'Action'],
+      transports: [],
+      fields: ['id', 'transport', 'usertransportLogin', 'Action'],
     }
   },
   created () {
-    this.getCredit()
+    this.getTransport()
   },
   methods: {
-    async getCredit () {
-      this.credits = await creditService.getCredit()
+    async getTransport () {
+      this.transports = await transportService.getTransport()
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.credit {
+.transport {
   &__header {
     display: flex;
     justify-content: space-between;

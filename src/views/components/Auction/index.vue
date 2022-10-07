@@ -49,9 +49,6 @@ export default {
       text-transform: uppercase;
     }
   }
-  .btn {
-    border-radius: 0;
-  }
 }
 </style>
 >

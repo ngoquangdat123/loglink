@@ -8,11 +8,15 @@ import store from './store/index'
 import VueI18n from 'vue-i18n'
 // eslint-disable-next-line import/order
 import Datepicker from 'vuejs-datepicker'
+import BootstrapVue from "bootstrap-vue/dist/bootstrap-vue.esm";
+
 Vue.component('DatePicker', Datepicker)
 Vue.config.productionTip = false
 Vue.use(Argon)
 Vue.use(VueI18n)
 Vue.filter('formatMarkToNumber', formatMarkToNumber)
+Vue.use(BootstrapVue)
+
 function formatMarkToNumber (str, multiplier = 1) {
   if (str) {
     return Number(str.replace(/,|\./g, '')) * multiplier
