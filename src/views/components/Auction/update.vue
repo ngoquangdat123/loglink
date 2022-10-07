@@ -1,23 +1,23 @@
 <template>
   <div class="container create-auction">
     <div class="create-auction__header">
-      <h3>Thêm mới auction</h3>
+      <h3>Cập nhật auction</h3>
     </div>
     <div class="create-auction__content">
       <div class="row">
         <div class="col-md-12">
           <BaseSelect
-            ref="transportMethod"
-            :input-value="formData.transportMethod"
-            name="transportMethod"
-            label="Transport Method"
-            :items="listTransportMethod"
-            value-field="transportMethod"
-            text-field="transportMethod"
-            :is-show-default="false"
-            required
-            error-required="Trường Transport Method không được để trống!"
-            @change="formData.transportMethod = $event"
+              ref="transportMethod"
+              :input-value="formData.transportMethod"
+              name="transportMethod"
+              label="Transport Method"
+              :items="listTransportMethod"
+              value-field="transportMethod"
+              text-field="transportMethod"
+              :is-show-default="false"
+              required
+              error-required="Trường Transport Method không được để trống!"
+              @change="formData.transportMethod = $event"
           />
         </div>
       </div>
@@ -74,42 +74,42 @@
       <div class="row">
         <div class="col-md-6">
           <BaseDatePicker
-            ref="opening"
-            v-model="formData.opening"
-            class-name="theme-light"
-            name="opening"
-            label="Opening"
-            type="text"
+              ref="opening"
+              v-model="formData.opening"
+              class-name="theme-light"
+              name="opening"
+              label="Opening"
+              type="text"
           />
         </div>
         <div class="col-md-6">
           <BaseDatePicker
-            ref="closing"
-            v-model="formData.closing"
-            class-name="theme-light"
-            name="closing"
-            label="Closing"
-            type="text"
+              ref="closing"
+              v-model="formData.closing"
+              class-name="theme-light"
+              name="closing"
+              label="Closing"
+              type="text"
           />
         </div>
       </div>
       <div class="row">
         <div class="col-md-6">
           <BaseDatePicker
-            ref="etd"
-            v-model="formData.etd"
-            class-name="theme-light"
-            name="etd"
-            label="Etd"
+              ref="etd"
+              v-model="formData.etd"
+              class-name="theme-light"
+              name="etd"
+              label="Etd"
           />
         </div>
         <div class="col-md-6">
           <BaseDatePicker
-            ref="eta"
-            v-model="formData.eta"
-            class-name="theme-light"
-            name="eta"
-            label="Eta"
+              ref="eta"
+              v-model="formData.eta"
+              class-name="theme-light"
+              name="eta"
+              label="Eta"
           />
         </div>
       </div>
@@ -122,12 +122,12 @@
       <div class="row">
         <div class="col-md-12">
           <BaseInputCustom
-            ref="expectedOffer"
-            v-model="formData.expectedOffer"
-            class-name="theme-light"
-            name="expectedOffer"
-            label="Expected Offer"
-            type="text"
+              ref="expectedOffer"
+              v-model="formData.expectedOffer"
+              class-name="theme-light"
+              name="expectedOffer"
+              label="Expected Offer"
+              type="text"
           />
         </div>
       </div>
@@ -135,27 +135,27 @@
       <div class="row">
         <div class="col-md-6">
           <BaseInputCustom
-            ref="hsCode"
-            v-model="formData.hsCode"
-            class-name="theme-light"
-            name="hsCode"
-            required
-            :is-pin="true"
-            label="Hs Code"
-            type="number"
-            error-required="Trường Hs Code không được để trống!"
+              ref="hsCode"
+              v-model="formData.hsCode"
+              class-name="theme-light"
+              name="hsCode"
+              required
+              :is-pin="true"
+              label="Hs Code"
+              type="number"
+              error-required="Trường Hs Code không được để trống!"
           />
         </div>
         <div class="col-md-6">
           <BaseInputCustom
-            ref="commodityDescription"
-            v-model="formData.commodityDescription"
-            class-name="theme-light"
-            name="commodityDescription"
-            required
-            label="Commodity Description"
-            type="text"
-            error-required="Trường Commodity Description không được để trống!"
+              ref="commodityDescription"
+              v-model="formData.commodityDescription"
+              class-name="theme-light"
+              name="commodityDescription"
+              required
+              label="Commodity Description"
+              type="text"
+              error-required="Trường Commodity Description không được để trống!"
           />
         </div>
       </div>
@@ -163,55 +163,55 @@
       <div class="row">
         <div class="col-md-4">
           <BaseInputCustom
-            ref="maxTransitTime"
-            v-model="formData.maxTransitTime"
-            class-name="theme-light"
-            name="maxTransitTime"
-            label="Max Transit Time"
-            type="number"
-            :is-pin="true"
+              ref="maxTransitTime"
+              v-model="formData.maxTransitTime"
+              class-name="theme-light"
+              name="maxTransitTime"
+              label="Max Transit Time"
+              type="number"
+              :is-pin="true"
           />
         </div>
         <div class="col-md-4">
           <BaseSelect
-            ref="term"
-            :input-value="formData.term"
-            name="term"
-            label="Term"
-            :items="listTerm"
-            :is-show-default="false"
-            required
-            error-required="Trường Term không được để trống!"
-            @change="formData.term = $event"
+              ref="term"
+              :input-value="formData.term"
+              name="term"
+              label="Term"
+              :items="listTerm"
+              :is-show-default="false"
+              required
+              error-required="Trường Term không được để trống!"
+              @change="formData.term = $event"
           />
         </div>
         <div v-if="formData.transportMethodId === 4 || formData.transportMethodId === 3" class="col-md-4">
           <p
-            style="
+              style="
                 font-size: 12px;
                 line-height: 16px;
                 color: #000000;
                 margin-bottom: 8px;
             "
-            class="base-select__label"
+              class="base-select__label"
           >
             Tranship
           </p>
           <div class="custom-control custom-checkbox mb-3">
             <input
-              id="zolwYUt"
-              v-model="formData.tranship"
-              type="checkbox"
-              class="custom-control-input"
-              :true-value="true"
-              :false-value="false"
-              @change="changeValueTranShip"
+                id="zolwYUt"
+                v-model="formData.tranship"
+                type="checkbox"
+                class="custom-control-input"
+                :true-value="true"
+                :false-value="false"
+                @change="changeValueTranShip"
             ><label
               for="zolwYUt"
               class="custom-control-label"
-            >
-              Tranship
-            </label>
+          >
+            Tranship
+          </label>
           </div>
         </div>
         <div v-else class="col-md-4" />
@@ -220,22 +220,22 @@
       <div class="row">
         <div class="col-md-6">
           <BaseInputCustom
-            ref="preferredShippingLine"
-            v-model="formData.preferredShippingLine"
-            class-name="theme-light"
-            name="preferredShippingLine"
-            label="Preferred Shipping Line"
-            type="text"
+              ref="preferredShippingLine"
+              v-model="formData.preferredShippingLine"
+              class-name="theme-light"
+              name="preferredShippingLine"
+              label="Preferred Shipping Line"
+              type="text"
           />
         </div>
         <div class="col-md-6">
           <BaseInputCustom
-            ref="avoidShippingLine"
-            v-model="formData.avoidShippingLine"
-            class-name="theme-light"
-            name="avoidShippingLine"
-            label="Avoid Shipping Line"
-            type="text"
+              ref="avoidShippingLine"
+              v-model="formData.avoidShippingLine"
+              class-name="theme-light"
+              name="avoidShippingLine"
+              label="Avoid Shipping Line"
+              type="text"
           />
         </div>
       </div>
@@ -243,12 +243,12 @@
       <div class="row">
         <div class="col-md-12">
           <BaseInputCustom
-            ref="remark"
-            v-model="formData.remark"
-            class-name="theme-light"
-            name="remark"
-            label="Remark"
-            type="text"
+              ref="remark"
+              v-model="formData.remark"
+              class-name="theme-light"
+              name="remark"
+              label="Remark"
+              type="text"
           />
         </div>
       </div>
@@ -260,9 +260,9 @@
           <span class="btn-inner--text">Hủy</span>
         </button>
         <button
-          type="button"
-          class="btn btn-3 btn-icon btn-primary btn-lg"
-          @click.prevent="addAuction"
+            type="button"
+            class="btn btn-3 btn-icon btn-primary btn-lg"
+            @click.prevent="addAuction"
         >
           <span class="btn-inner--icon">
             <i class="ni ni-bag-17" />
@@ -335,6 +335,7 @@ export default {
   created () {
     this.listSea = ports.JSON
     this.getTransportMethod()
+    this.getDetail()
   },
   methods: {
     changeValueTranShip (event) {
@@ -347,12 +348,45 @@ export default {
         console.log(e)
       }
     },
+    async getDetail () {
+      try {
+        const id = this.$route.query.id
+        const response = await auctionService.getAuctionById(id)
+        this.formData =  {
+          id: response.id,
+          transportMethod: response.transportMethodTransportMethod,
+          avoidShippingLine: '',
+          closed: false,
+          closing: response.closing,
+          commodityDescription: response.commodityDescription,
+          eta: response.eta,
+          etd: response.etd,
+          expectedOffer: '',
+          hsCode: response.hsCode,
+          maxTransitTime: '',
+          numberOfContainer: 1,
+          opening: response.opening,
+          preferredShippingLine: '',
+          ref: 'BA000000',
+          remark: response.remark,
+          requestDate: response.requestDate,
+          term: response.term,
+          tranship: response.transportMethodId,
+          transportMethodId: response.transportMethodId,
+          winnerIdId: '',
+          destination: response.destination,
+          origin: response.destination
+        }
+      } catch (e) {
+        console.log(e)
+      }
+    },
     async addAuction () {
       try {
         const refs = ['transportMethod', 'origin', 'destination', 'term', 'commodityDescription', 'hsCode']
         const refsValid = this.$_validateMixin_refs(refs)
         if (refsValid) {
-          const res = await auctionService.addAuction(this.formData)
+          const res = await auctionService.updateAuction(this.formData)
           console.log(res)
         }
       } catch (e) {

@@ -7,6 +7,7 @@ export const auctionService = {
   getAuctionById,
   getTransportMethod,
   addAuction,
+  updateAuction,
   getContainerTypes
 }
 
@@ -17,6 +18,21 @@ function getTransportMethod () {
   }
 
   return fetch(`${apiUrl}/api/transport-methods`, requestOptions).then(handleResponse)
+}
+
+
+function updateAuction (payload) {
+  const requestOptions = {
+    method: 'PUT',
+    headers: authHeader(),
+    body: JSON.stringify(payload)
+  }
+
+  return fetch(`${apiUrl}/api/auctions`, requestOptions)
+      .then(handleResponse)
+      .then((res) => {
+        return res
+      })
 }
 
 function addAuction (payload) {

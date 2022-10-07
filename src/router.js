@@ -10,12 +10,14 @@ import Profile from "./views/Profile.vue";
 import Home from "./views/Home.vue";
 import Auction from "./views/auction";
 import CreateAuction from "./views/auction/create-auction";
+import UpdateAuction from "./views/auction/update-auction";
 import AuctionDetail from "./views/auction/detail";
 import Credit from "./views/credit";
 
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   linkExactActiveClass: "active",
   routes: [
     {
@@ -87,6 +89,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: CreateAuction,
+        footer: AppFooter,
+      },
+    },
+    {
+      path: "/auction/update",
+      name: "updateAuction",
+      components: {
+        header: AppHeader,
+        default: UpdateAuction,
         footer: AppFooter,
       },
     },

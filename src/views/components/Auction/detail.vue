@@ -171,7 +171,7 @@
       <div class="detail-auction__action">
         <button type="button" class="btn btn-primary">Báo giá</button>
         <button type="button" class="btn btn-primary">Xem báo giá</button>
-        <button type="button" class="btn btn-primary">Cập nhật</button>
+        <button @click="updateItem(item.id)" type="button" class="btn btn-primary">Cập nhật</button>
         <button type="button" class="btn btn-danger">Xóa</button>
       </div>
     </div>
@@ -193,6 +193,9 @@ export default {
     async getDetail () {
       const id = this.$route.query.id
       this.item = await auctionService.getAuctionById(id)
+    },
+    updateItem(id) {
+      this.$router.push(`/auction/update?id=${id}`)
     }
   }
 }
