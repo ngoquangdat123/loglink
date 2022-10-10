@@ -8,7 +8,8 @@ export const auctionService = {
   getTransportMethod,
   addAuction,
   updateAuction,
-  getContainerTypes
+  getContainerTypes,
+  addRfq
 }
 
 function getTransportMethod () {
@@ -43,6 +44,18 @@ function addAuction (payload) {
   }
 
   return fetch(`${apiUrl}/api/auctions`, requestOptions)
+    .then(handleResponse)
+    .then((res) => {
+      return res
+    })
+}
+
+function addRfq (payload) {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  }
+  return fetch(`${apiUrl}/api/quick-sea-quotes?` + payload, requestOptions)
     .then(handleResponse)
     .then((res) => {
       return res

@@ -159,10 +159,13 @@
                     <router-link to="/auction" class="dropdown-item">
                       Auction
                     </router-link>
-                    <router-link to="/#" class="dropdown-item">
+                    <router-link to="/rfq" class="dropdown-item">
+                      Yêu cầu báo giá
+                    </router-link>
+                    <router-link to="/upload-quote/sea" class="dropdown-item">
                       Tải lên báo giá đường biển
                     </router-link>
-                    <router-link to="/#" class="dropdown-item">
+                    <router-link to="/upload-quote/trucking" class="dropdown-item">
                       Tải lên báo giá đường bộ
                     </router-link>
                     <router-link to="/credit" class="dropdown-item">
