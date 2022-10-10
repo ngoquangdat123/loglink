@@ -169,16 +169,17 @@
         </div>
       </div>
       <div class="detail-auction__action">
-        <button type="button" class="btn btn-primary">Báo giá</button>
-        <button type="button" class="btn btn-primary">Xem báo giá</button>
+        <button @click="createBid(item.id)" type="button" class="btn btn-primary">Báo giá</button>
+        <button @click="showBid(item.id)" type="button" class="btn btn-primary">Xem báo giá</button>
         <button @click="updateItem(item.id)" type="button" class="btn btn-primary">Cập nhật</button>
-        <button type="button" class="btn btn-danger">Xóa</button>
+        <button @click="deleteItem(item.id)" type="button" class="btn btn-danger">Xóa</button>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { auctionService } from '../../../services/auction.service'
+import { auctionService } from '@/services/auction.service'
+import Swal from "sweetalert2";
 export default {
   components: {},
   data () {
@@ -196,6 +197,52 @@ export default {
     },
     updateItem(id) {
       this.$router.push(`/auction/update?id=${id}`)
+    },
+    createBid(id) {
+      this.$router.push(`/create-bid?id=${id}`)
+    },
+    showBid(id) {
+      this.$router.push(`/show-bid?id=${id}`)
+    },
+    deleteItem (id) {
+      Swal.fire({
+        title: 'XÁC NHẬN HÀNH ĐỘNG XÓA',
+        text: `Bạn có chắc là muốn xóa Auction ${id}?`,
+        icon: 'error',
+        showCloseButton: true,
+        showCancelButton: true,
+        cancelButtonText: 'Hủy',
+        confirmButtonText: 'Xóa',
+        customClass: {
+          title: 'delete'
+        }
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await this.submit(id)
+        }
+      });
+    },
+    async submit(id) {
+      try {
+        await auctionService.deleteAuctionById(id)
+        await Swal.fire({
+          title: 'Xóa thành công',
+          text: ``,
+          icon: 'success',
+          showCloseButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'OK',
+          customClass: {
+            title: 'delete'
+          }
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            await this.$router.push('/auction')
+          }
+        });
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 }

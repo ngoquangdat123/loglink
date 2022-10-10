@@ -1,67 +1,121 @@
 <template>
-  <div class="container require-price">
-    <div class="require-price__header">
-      <h3>THÊM MỚI HOẶC CẬP NHẬT RFQ</h3>
+  <div class="container create-bid">
+    <div class="create-bid__header">
+      <h3>THÊM MỚI HOẶC CẬP NHẬT BID</h3>
     </div>
-    <div class="require-price__content">
-      <div class="row">
-        <div class="col-md-12">
-          <BaseSelect
-              ref="serviceType"
-              :input-value="formData.serviceType"
-              name="serviceType"
-              label="Service Type"
-              :items="listServiceType"
-              :is-show-default="false"
-              required
-              error-required="Trường Service Type không được để trống!"
-              @change="formData.serviceType = $event"
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <BaseInputCustom
-              ref="origin"
-              v-model="formData.origin"
-              class-name="theme-light"
-              name="origin"
-              required
-              label="Origin"
-              type="text"
-              error-required="Trường Origin không được để trống!"
-          />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <BaseInputCustom
-              ref="destination"
-              v-model="formData.destination"
-              class-name="theme-light"
-              name="destination"
-              required
-              label="Destination"
-              type="text"
-              error-required="Trường Destination không được để trống!"
-            />
-        </div>
-      </div>
+    <div class="create-bid__content">
       <div class="row">
         <div class="col-md-12">
           <BaseDatePicker
-              ref="expectedDate"
-              v-model="formData.expectedDate"
+              ref="dateOfBid"
+              v-model="formData.dateOfBid"
               class-name="theme-light"
-              name="expectedDate"
-              label="Expected Date"
+              name="dateOfBid"
+              label="Date Of Bid"
               type="text"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <BaseInputCustom
+              ref="lumpSum"
+              v-model="formData.lumpSum"
+              class-name="theme-light"
+              name="lumpSum"
               required
+              label="Lump Sum"
+              type="number"
+              :is-pin="true"
+              error-required="Trường Lump Sum không được để trống!"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <BaseInputCustom
+              ref="maxTransitTime"
+              v-model="formData.maxTransitTime"
+              class-name="theme-light"
+              name="maxTransitTime"
+              required
+              label="Max Transit Time"
+              type="number"
+              :is-pin="true"
+              error-required="Trường Max Transit Time không được để trống!"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+            <p
+                style="
+                font-size: 12px;
+                line-height: 16px;
+                color: #000000;
+                margin-bottom: 8px;
+            "
+                class="base-select__label"
+            >
+              Tranship
+            </p>
+            <div class="custom-control custom-checkbox mb-3">
+              <input
+                  id="zolwYUt"
+                  v-model="formData.tranship"
+                  type="checkbox"
+                  class="custom-control-input"
+                  :true-value="true"
+                  :false-value="false"
+              ><label
+                for="zolwYUt"
+                class="custom-control-label"
+            >
+              Tranship
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <BaseInputCustom
+              ref="transitPort"
+              v-model="formData.transitPort"
+              class-name="theme-light"
+              name="transitPort"
+              label="Transit Port"
+              type="text"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <BaseInputCustom
+              ref="demDet"
+              v-model="formData.demDet"
+              class-name="theme-light"
+              name="demDet"
+              label="Dem Det"
+              type="text"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <BaseInputCustom
+              ref="credit"
+              v-model="formData.credit"
+              class-name="theme-light"
+              name="credit"
+              required
+              label="Credit"
+              type="number"
+              :is-pin="true"
           />
         </div>
       </div>
       <div class="action">
-        <button type="button" class="btn btn-1 btn btn-icon btn-neutral btn-lg">
+        <button @click="$router.back()" type="button" class="btn btn-1 btn btn-icon btn-neutral btn-lg">
           <span class="btn-inner--icon">
             <i class="fa fa-ban" />
           </span>
@@ -70,7 +124,7 @@
         <button
             type="button"
             class="btn btn-3 btn-icon btn-primary btn-lg"
-            @click.prevent="addRfq"
+            @click.prevent="createBid"
         >
           <span class="btn-inner--icon">
             <i class="ni ni-bag-17" />
@@ -84,71 +138,78 @@
 <script>
 import BaseInputCustom from '../Common/BaseInputCustom'
 import BaseDatePicker from '../Common/BaseDatePicker'
-import BaseSelect from '../Common/BaseSelect'
-import { auctionService } from '@/services/auction.service'
+import {auctionService} from '@/services/auction.service'
 import validateMixins from '../../../mixins/validate'
-import moment from "moment";
+import globalMixins from '../../../mixins/global'
+import Swal from "sweetalert2";
+
 export default {
   components: {
     BaseInputCustom,
-    BaseDatePicker,
-    BaseSelect
+    BaseDatePicker
   },
-  mixins: [validateMixins],
+  mixins: [validateMixins, globalMixins],
   data () {
     return {
-      isValid: true,
-      listServiceType: [
-        'SEA',
-        'TRUCK'
-      ],
       formData: {
-        serviceType: '',
-        origin: '',
-        destination: '',
-        expectedDate: new Date()
+        bidForId: '',
+        bidderId: '',
+        bidderLogin: null,
+        credit: '',
+        dateOfBid: new Date(),
+        demDet: '',
+        lumpSum: '',
+        maxTransitTime: '',
+        tranship: '',
+        transitPort: ''
       }
     }
   },
-  created () {
+  async created () {
+    this.formData.bidForId = Number(this.$route.query.id) || ''
+    this.formData.bidderId = this.currentUser.id || ''
   },
   methods: {
-    async addRfq () {
+    async createBid () {
       try {
-        const refs = ['serviceType', 'origin', 'destination', 'expectedDate']
+        const refs = ['lumpSum', 'maxTransitTime']
         const refsValid = this.$_validateMixin_refs(refs)
         if (refsValid) {
-          const payload = {
-            params: {
-              page: 0,
-              size: 20,
-              'pol.contains': this.formData.origin,
-              'pod.contains:': this.formData.destination,
-              'validFrom.lessThanOrEqual': moment(this.formData.expectedDate).format('YYYY-MM-DD'),
-              'validTo.greaterThanOrEqual': moment(this.formData.expectedDate).format('YYYY-MM-DD'),
-              'sort': 'id,asc'
-            }
+          const res = await auctionService.addBid(this.formData)
+          if (res) {
+            await Swal.fire({
+              title: 'Tạo báo giá thành công',
+              text: ``,
+              icon: 'success',
+              showCloseButton: true,
+              showCancelButton: true,
+              confirmButtonText: 'OK',
+              customClass: {
+                title: 'delete'
+              }
+            }).then(async (result) => {
+              if (result.isConfirmed) {
+                await this.$router.push('/auction')
+              }
+            });
           }
-          const res = await auctionService.addRfq(this.serialize(payload.params))
-          console.log(res)
         }
       } catch (e) {
         console.log(e)
       }
     },
-    serialize(obj) {
-      let str = [];
-      for (let p in obj)
-        if (obj.hasOwnProperty(p)) {
-          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        }
-      return str.join("&");
+    async getBid () {
+      try {
+        return await auctionService.getBid()
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.require-price {
+.create-bid {
   &__header {
     display: flex;
     justify-content: space-between;

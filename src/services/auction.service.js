@@ -5,11 +5,14 @@ import { userService } from './user.services'
 export const auctionService = {
   getAuction,
   getAuctionById,
+  deleteAuctionById,
   getTransportMethod,
   addAuction,
   updateAuction,
   getContainerTypes,
-  addRfq
+  addRfq,
+  addBid,
+  getBid
 }
 
 function getTransportMethod () {
@@ -50,7 +53,37 @@ function addAuction (payload) {
     })
 }
 
-function addRfq (payload) {
+// Báo giá
+function addBid (payload) {
+  const requestOptions = {
+    method: 'POST',
+    headers: authHeader(),
+    body: JSON.stringify(payload)
+  }
+  return fetch(`${apiUrl}/api/bids`, requestOptions)
+      .then(handleResponse)
+      .then((res) => {
+        return res
+      })
+}
+
+function getBid (payload = '') {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  }
+  return fetch(`${apiUrl}/api/bids?` + payload, requestOptions)
+      .then(handleResponse)
+      .then((res) => {
+        return res
+      })
+}
+// Báo giá
+
+
+
+// Yêu cầu báo giá
+function addRfq (payload = '') {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
@@ -61,15 +94,16 @@ function addRfq (payload) {
       return res
     })
 }
+// Yêu cầu báo giá
 
 function getAuction () {
   const requestOptions = {
     method: 'GET',
     headers: authHeader()
   }
-
   return fetch(`${apiUrl}/api/auctions`, requestOptions).then(handleResponse)
 }
+
 function getContainerTypes () {
   const requestOptions = {
     method: 'GET',
@@ -82,6 +116,14 @@ function getContainerTypes () {
 function getAuctionById (id) {
   const requestOptions = {
     method: 'GET',
+    headers: authHeader()
+  }
+
+  return fetch(`${apiUrl}/api/auctions/${id}`, requestOptions).then(handleResponse)
+}
+function deleteAuctionById (id) {
+  const requestOptions = {
+    method: 'DELETE',
     headers: authHeader()
   }
 
