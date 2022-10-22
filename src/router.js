@@ -11,6 +11,8 @@ import Home from "./views/Home.vue";
 import Auction from "./views/auction";
 import RequirePrice from "./views/auction/require-price";
 import CreateAuction from "./views/auction/create-auction";
+import UploadQuoteSea from "./views/auction/upload-quote-sea";
+import UploadQuoteTrucking from "./views/auction/upload-quote-trucking";
 import UpdateAuction from "./views/auction/update-auction";
 import AuctionDetail from "./views/auction/detail";
 import CreateBid from "./views/auction/create-bid";
@@ -92,6 +94,24 @@ export default new Router({
       components: {
         header: AppHeader,
         default: Auction,
+        footer: AppFooter,
+      },
+    },
+    {
+      path: "/upload-quote-sea",
+      name: "uploadQuoteSea",
+      components: {
+        header: AppHeader,
+        default: UploadQuoteSea,
+        footer: AppFooter,
+      },
+    },
+    {
+      path: "/upload-quote-trucking",
+      name: "uploadQuoteTrucking",
+      components: {
+        header: AppHeader,
+        default: UploadQuoteTrucking,
         footer: AppFooter,
       },
     },

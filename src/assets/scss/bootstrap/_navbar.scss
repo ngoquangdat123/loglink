@@ -227,7 +227,7 @@
 
   .navbar-toggler {
     color: $navbar-light-color;
-    border-color: $navbar-light-toggler-border-color;
+    border-color: $navbar-light-color;
   }
 
   .navbar-toggler-icon {
@@ -258,10 +258,11 @@
 
   .navbar-nav {
     .nav-link {
-      color: $navbar-dark-color;
+      color: #000000;
+      text-transform: capitalize;
 
       @include hover-focus {
-        color: $navbar-dark-hover-color;
+        color: #2643e9;
       }
 
       &.disabled {
@@ -279,7 +280,7 @@
 
   .navbar-toggler {
     color: $navbar-dark-color;
-    border-color: $navbar-dark-toggler-border-color;
+    border-color: gray;
   }
 
   .navbar-toggler-icon {

@@ -1,136 +1,16 @@
 <template>
   <header class="header-global">
-    <section class="top-toolbar">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-8 col-md-6">
-            <div class="toolbar-left">
-              <ul class="one">
-                <li>
-                  <a href="#">
-                    <span>
-                      <i class="icofont icofont-phone" />
-                    </span>
-                    +0125369523
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span>
-                      <i class="icofont icofont-envelope" />
-                    </span>
-                    demo@gmail.com
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span>
-                      <i class="icofont icofont-social-google-map" />
-                    </span>
-                    123, Vuter goli, New yeork
-                  </a>
-                </li>
-              </ul>
-              <ul class="two">
-                <li>
-                  <a href="#">
-                    <span>
-                      <i class="fa fa-phone" />
-                    </span>
-                    +8523684
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span>
-                      <i class="fa fa-mail" />
-                    </span>
-                    demo@gmail.com
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span>
-                      <i class="fa fa-map-marker" />
-                    </span>
-                    123, Vuter goli, New yeork
-                  </a>
-                </li>
-              </ul>
-              <ul class="three">
-                <li>
-                  <a href="#">
-                    <span>
-                      <i class="fa fa-phone" />
-                    </span>
-                    +5258569
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span>
-                      <i class="fa fa-mail" />
-                    </span>
-                    demo@gmail.com
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span>
-                      <i class="fa fa-map-marker" />
-                    </span>
-                    123, Vuter goli, New yeork
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-sm-4 col-md-6">
-            <div class="toolbar-right">
-              <div class="top-office-select-area">
-                <div class="select-container">
-                  <span>
-                    <i class="fa fa-globe" />
-                  </span>
-                  <div class="select-area">
-                    <select>
-                      <option value="1">
-                        New York
-                      </option>
-                      <option value="2">
-                        New Jersey
-                      </option>
-                      <option value="3">
-                        New Mexico
-                      </option>
-                    </select>
-                    <div class="sSelect down" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
     <section class="main-menu-area">
       <div class="container">
         <div class="row">
-          <div class="col-md-3 col-sm-12 d-flex align-items-center">
-            <div class="">
-              <a href="#/">
-                <img
-                  src="/img/home/logo-black.png"
-                  alt=""
-                  style="width: 120px !important"
-                >
-              </a>
-            </div>
-          </div>
-          <div class="col-md-9 col-sm-12">
-            <base-nav class="navbar-main" type="" effect="light" expand>
+          <div class="col-sm-12 col-md-12 col-lg-12">
+            <base-nav class="navbar-main" type="" effect="dark" expand>
               <router-link slot="brand" class="navbar-brand mr-lg-5" to="/">
-                <img src="img/brand/white.png">
+                <img
+                    src="/img/home/logo-black.png"
+                    alt=""
+                    style="width: 120px !important"
+                >
               </router-link>
 
               <div slot="content-header" slot-scope="{ closeMenu }" class="row">
@@ -159,14 +39,23 @@
                     <router-link to="/auction" class="dropdown-item">
                       Auction
                     </router-link>
+                    <router-link to="/upload-quote-sea" class="dropdown-item">
+                      Tải lên báo giá đường biển
+                    </router-link>
+                    <router-link to="/upload-quote-trucking" class="dropdown-item">
+                      Tải lên báo giá đường bộ
+                    </router-link>
                     <router-link to="/rfq" class="dropdown-item">
                       Yêu cầu báo giá
                     </router-link>
-                    <router-link to="/upload-quote/sea" class="dropdown-item">
-                      Tải lên báo giá đường biển
+                    <router-link to="/user-profile" class="dropdown-item">
+                      User Profile
                     </router-link>
-                    <router-link to="/upload-quote/trucking" class="dropdown-item">
-                      Tải lên báo giá đường bộ
+                    <router-link to="/transport-route" class="dropdown-item">
+                      Tuyến vận tải
+                    </router-link>
+                    <router-link to="/auction-nominated-bidder" class="dropdown-item">
+                      Auction Nominated Bidder
                     </router-link>
                     <router-link to="/credit" class="dropdown-item">
                       Credit
@@ -181,7 +70,7 @@
                     role="button"
                   >
                     <i class="ni ni-collection d-lg-none" />
-                    <span class="nav-link-inner--text">NEWS</span>
+                    <span class="nav-link-inner--text">News</span>
                   </a>
                   <div class="dropdown-menu">
                     <router-link to="/#" class="dropdown-item">
@@ -203,7 +92,7 @@
                     role="button"
                   >
                     <i class="ni ni-collection d-lg-none" />
-                    <span class="nav-link-inner--text">GALLERY</span>
+                    <span class="nav-link-inner--text">Gallery</span>
                   </a>
                 </li>
                 <li class="nav-item dropdown">
