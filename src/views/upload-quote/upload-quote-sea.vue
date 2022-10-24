@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import UploadQuoteSea from '../components/Auction/upload-quote-sea.vue'
+import UploadQuoteSea from '../components/UploadQuote/upload-quote-sea.vue'
 export default {
   name: "upload-quote-sea",
   components: {

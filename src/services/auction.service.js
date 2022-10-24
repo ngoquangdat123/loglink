@@ -12,45 +12,8 @@ export const auctionService = {
   getContainerTypes,
   addRfq,
   addBid,
-  getBid
-}
-
-function getTransportMethod () {
-  const requestOptions = {
-    method: 'GET',
-    headers: authHeader()
-  }
-
-  return fetch(`${apiUrl}/api/transport-methods`, requestOptions).then(handleResponse)
-}
-
-
-function updateAuction (payload) {
-  const requestOptions = {
-    method: 'PUT',
-    headers: authHeader(),
-    body: JSON.stringify(payload)
-  }
-
-  return fetch(`${apiUrl}/api/auctions`, requestOptions)
-      .then(handleResponse)
-      .then((res) => {
-        return res
-      })
-}
-
-function addAuction (payload) {
-  const requestOptions = {
-    method: 'POST',
-    headers: authHeader(),
-    body: JSON.stringify(payload)
-  }
-
-  return fetch(`${apiUrl}/api/auctions`, requestOptions)
-    .then(handleResponse)
-    .then((res) => {
-      return res
-    })
+  getBid,
+  listUserProfile
 }
 
 // Báo giá
@@ -96,6 +59,7 @@ function addRfq (payload = '') {
 }
 // Yêu cầu báo giá
 
+// Auction
 function getAuction () {
   const requestOptions = {
     method: 'GET',
@@ -121,6 +85,7 @@ function getAuctionById (id) {
 
   return fetch(`${apiUrl}/api/auctions/${id}`, requestOptions).then(handleResponse)
 }
+
 function deleteAuctionById (id) {
   const requestOptions = {
     method: 'DELETE',
@@ -129,6 +94,59 @@ function deleteAuctionById (id) {
 
   return fetch(`${apiUrl}/api/auctions/${id}`, requestOptions).then(handleResponse)
 }
+
+function getTransportMethod () {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  }
+
+  return fetch(`${apiUrl}/api/transport-methods`, requestOptions).then(handleResponse)
+}
+
+function updateAuction (payload) {
+  const requestOptions = {
+    method: 'PUT',
+    headers: authHeader(),
+    body: JSON.stringify(payload)
+  }
+
+  return fetch(`${apiUrl}/api/auctions`, requestOptions)
+      .then(handleResponse)
+      .then((res) => {
+        return res
+      })
+}
+
+function addAuction (payload) {
+  const requestOptions = {
+    method: 'POST',
+    headers: authHeader(),
+    body: JSON.stringify(payload)
+  }
+
+  return fetch(`${apiUrl}/api/auctions`, requestOptions)
+      .then(handleResponse)
+      .then((res) => {
+        return res
+      })
+}
+// Auction
+
+// User profile
+function listUserProfile (payload = '') {
+  const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+  }
+  return fetch(`${apiUrl}/api/user-profiles?` + payload, requestOptions)
+      .then(handleResponse)
+      .then((res) => {
+        return res
+      })
+}
+// User profile
+
 
 function handleResponse (response) {
   return response.text().then((text) => {

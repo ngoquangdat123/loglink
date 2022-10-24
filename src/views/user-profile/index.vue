@@ -1,14 +1,14 @@
 <template>
   <section class="section">
-    <RequirePrice />
+    <UserProfile />
   </section>
 </template>
 <script>
-import RequirePrice from "../components/Auction/require-price.vue";
+import UserProfile from "../components/UserProfile/index.vue"
 
 export default {
   components: {
-    RequirePrice
+    UserProfile
   },
 };
 </script>

@@ -36,7 +36,7 @@
               class="btn btn-1 btn-primary"
               :class="{'disabled': disable}"
           >
-            <span>Primary</span>
+            <span>Upload</span>
           </button>
         </div>
       </div>

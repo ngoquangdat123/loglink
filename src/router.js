@@ -9,15 +9,16 @@ import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
 import Home from "./views/Home.vue";
 import Auction from "./views/auction";
-import RequirePrice from "./views/auction/require-price";
+import RequirePrice from "./views/require-price/index.vue";
 import CreateAuction from "./views/auction/create-auction";
-import UploadQuoteSea from "./views/auction/upload-quote-sea";
-import UploadQuoteTrucking from "./views/auction/upload-quote-trucking";
+import UploadQuoteSea from "./views/upload-quote/upload-quote-sea";
+import UploadQuoteTrucking from "./views/upload-quote/upload-quote-trucking";
 import UpdateAuction from "./views/auction/update-auction";
 import AuctionDetail from "./views/auction/detail";
 import CreateBid from "./views/auction/create-bid";
 import ShowBid from "./views/auction/show-bid";
 import Credit from "./views/credit";
+import UserProfile from './views/user-profile/index.vue'
 
 Vue.use(Router);
 
@@ -166,6 +167,15 @@ export default new Router({
       components: {
         header: AppHeader,
         default: ShowBid,
+        footer: AppFooter,
+      }
+    },
+    {
+      path: "/user-profile",
+      name: "UserProfile",
+      components: {
+        header: AppHeader,
+        default: UserProfile,
         footer: AppFooter,
       }
     },
