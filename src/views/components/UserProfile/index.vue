@@ -36,9 +36,9 @@
             <td>{{ item.userLogin }}</td>
             <td class="td-actions text-right">
               <div class="d-flex">
-                <button type="button" class="btn btn-primary">Xem</button>
+                <button type="button" class="btn btn-primary" @click="viewDetail(item.id)">Xem</button>
                 <button type="button" class="btn btn-warning">Sửa</button>
-                <button type="button" class="btn btn-danger">xóa</button>
+                <button type="button" class="btn btn-danger" @click="deleteItem(item.id)">xóa</button>
               </div>
             </td>
           </tr>
@@ -49,11 +49,11 @@
 </template>
 
 <script>
-import {auctionService} from '@/services/auction.service'
+import {userProfileService} from '@/services/user-profile.service'
 import validateMixins from '../../../mixins/validate'
 import globalMixins from '../../../mixins/global'
 import moment from "moment";
-
+import Swal from "sweetalert2";
 export default {
   mixins: [validateMixins, globalMixins],
   data () {
@@ -67,12 +67,12 @@ export default {
     }
   },
   async created () {
-    await this.getBid()
+    await this.getListUser()
   },
   methods: {
-    async getBid () {
+    async getListUser () {
       try {
-        const res = await auctionService.listUserProfile(this.serialize(this.formData))
+        const res = await userProfileService.listUserProfile(this.serialize(this.formData))
         if (res && res.length) {
           this.listUser = res
         }
@@ -90,6 +90,49 @@ export default {
     },
     formatTime (value) {
       return moment(value).format('HH:mm:ss DD/MM/YYYY')
+    },
+    viewDetail(id) {
+      this.$router.push(`/user-profile/detail?id=${id}`)
+    },
+    deleteItem (id) {
+      Swal.fire({
+        title: 'XÁC NHẬN HÀNH ĐỘNG XÓA',
+        text: `Bạn có chắc là muốn xóa User ${id}?`,
+        icon: 'error',
+        showCloseButton: true,
+        showCancelButton: true,
+        cancelButtonText: 'Hủy',
+        confirmButtonText: 'Xóa',
+        customClass: {
+          title: 'delete'
+        }
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await this.submit(id)
+        }
+      });
+    },
+    async submit(id) {
+      try {
+        await userProfileService.deleteUserProfile(id)
+        await Swal.fire({
+          title: 'Xóa thành công',
+          text: ``,
+          icon: 'success',
+          showCloseButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'OK',
+          customClass: {
+            title: 'delete'
+          }
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            await this.getListUser()
+          }
+        });
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 }

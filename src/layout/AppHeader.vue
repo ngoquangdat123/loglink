@@ -192,5 +192,8 @@ export default {
     background: #131313;
   }
 }
+.main-menu-area {
+  background: beige;
+}
 </style>
->
+

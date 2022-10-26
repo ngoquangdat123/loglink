@@ -353,7 +353,7 @@ export default {
         const refsValid = this.$_validateMixin_refs(refs)
         if (refsValid) {
           const res = await auctionService.addAuction(this.formData)
-          console.log(res)
+          console.log(res.userId)
         }
       } catch (e) {
         console.log(e)

@@ -60,7 +60,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`${apiUrl}/users`, requestOptions).then(handleResponse);
+    return fetch(`${apiUrl}/api/users`, requestOptions).then(handleResponse);
 }
 
 

@@ -12,8 +12,7 @@ export const auctionService = {
   getContainerTypes,
   addRfq,
   addBid,
-  getBid,
-  listUserProfile
+  getBid
 }
 
 // Báo giá
@@ -132,21 +131,6 @@ function addAuction (payload) {
       })
 }
 // Auction
-
-// User profile
-function listUserProfile (payload = '') {
-  const requestOptions = {
-    method: 'GET',
-    headers: authHeader()
-  }
-  return fetch(`${apiUrl}/api/user-profiles?` + payload, requestOptions)
-      .then(handleResponse)
-      .then((res) => {
-        return res
-      })
-}
-// User profile
-
 
 function handleResponse (response) {
   return response.text().then((text) => {

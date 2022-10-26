@@ -19,6 +19,9 @@ import CreateBid from "./views/auction/create-bid";
 import ShowBid from "./views/auction/show-bid";
 import Credit from "./views/credit";
 import UserProfile from './views/user-profile/index.vue'
+import UserProfileCreate from './views/user-profile/create.vue'
+import UserProfileUpdate from './views/user-profile/update.vue'
+import UserProfileDetail from './views/user-profile/detail.vue'
 
 Vue.use(Router);
 
@@ -176,6 +179,33 @@ export default new Router({
       components: {
         header: AppHeader,
         default: UserProfile,
+        footer: AppFooter,
+      }
+    },
+    {
+      path: "/user-profile/new",
+      name: "UserProfileCreate",
+      components: {
+        header: AppHeader,
+        default: UserProfileCreate,
+        footer: AppFooter,
+      }
+    },
+    {
+      path: "/user-profile/detail",
+      name: "UserProfileDetail",
+      components: {
+        header: AppHeader,
+        default: UserProfileDetail,
+        footer: AppFooter,
+      }
+    },
+    {
+      path: "/user-profile/edit",
+      name: "UserProfileUpdate",
+      components: {
+        header: AppHeader,
+        default: UserProfileUpdate,
         footer: AppFooter,
       }
     },
