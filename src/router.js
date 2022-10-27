@@ -8,6 +8,7 @@ import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
 import Profile from "./views/Profile.vue";
 import Home from "./views/Home.vue";
+// Auction
 import Auction from "./views/auction";
 import RequirePrice from "./views/require-price/index.vue";
 import CreateAuction from "./views/auction/create-auction";
@@ -17,11 +18,21 @@ import UpdateAuction from "./views/auction/update-auction";
 import AuctionDetail from "./views/auction/detail";
 import CreateBid from "./views/auction/create-bid";
 import ShowBid from "./views/auction/show-bid";
+
+// Credit
 import Credit from "./views/credit";
+
+// UserProfile
 import UserProfile from './views/user-profile/index.vue'
 import UserProfileCreate from './views/user-profile/create.vue'
 import UserProfileUpdate from './views/user-profile/update.vue'
 import UserProfileDetail from './views/user-profile/detail.vue'
+
+// TransportRoute
+import TransportRoute from './views/transport-route/index'
+import TransportRouteCreate from './views/transport-route/create.vue'
+import TransportRouteUpdate from './views/transport-route/update.vue'
+import TransportRouteDetail from './views/transport-route/detail.vue'
 
 Vue.use(Router);
 
@@ -206,6 +217,42 @@ export default new Router({
       components: {
         header: AppHeader,
         default: UserProfileUpdate,
+        footer: AppFooter,
+      }
+    },
+    {
+      path: "/transport-route",
+      name: "TransportRoute",
+      components: {
+        header: AppHeader,
+        default: TransportRoute,
+        footer: AppFooter,
+      }
+    },
+    {
+      path: "/transport-route/new",
+      name: "TransportRouteCreate",
+      components: {
+        header: AppHeader,
+        default: TransportRouteCreate,
+        footer: AppFooter,
+      }
+    },
+    {
+      path: "/transport-route/detail",
+      name: "TransportRouteDetail",
+      components: {
+        header: AppHeader,
+        default: TransportRouteDetail,
+        footer: AppFooter,
+      }
+    },
+    {
+      path: "/transport-route/edit",
+      name: "TransportRouteUpdate",
+      components: {
+        header: AppHeader,
+        default: TransportRouteUpdate,
         footer: AppFooter,
       }
     },

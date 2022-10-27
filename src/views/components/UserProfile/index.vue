@@ -19,31 +19,31 @@
               <span>ID</span>
               <i class="fa fa-sort" aria-hidden="true"></i>
             </th>
-            <th scope="col" @click="sortDataById('cellPhone')">
+            <th scope="col" @click="sortData('cellPhone')">
               <span>Cell Phone</span>
               <i class="fa fa-sort" aria-hidden="true"></i>
             </th>
-            <th scope="col" @click="sortDataById('companyName')">
+            <th scope="col" @click="sortData('companyName')">
               <span>Company Name</span>
               <i class="fa fa-sort" aria-hidden="true"></i>
             </th>
-            <th scope="col" @click="sortDataById('contactAddress')">
+            <th scope="col" @click="sortData('contactAddress')">
               <span>Contact Address</span>
               <i class="fa fa-sort" aria-hidden="true"></i>
             </th>
-            <th scope="col" @click="sortDataById('companyLogoUrl')">
+            <th scope="col" @click="sortData('companyLogoUrl')">
               <span>Company Logo Url</span>
               <i class="fa fa-sort" aria-hidden="true"></i>
             </th>
-            <th scope="col" @click="sortDataById('coin')">
+            <th scope="col" @click="sortData('coin')">
               <span>Coin</span>
               <i class="fa fa-sort" aria-hidden="true"></i>
             </th>
-            <th scope="col" @click="sortDataById('user')">
+            <th scope="col" @click="sortData('user')">
               <span>User</span>
               <i class="fa fa-sort" aria-hidden="true"></i>
             </th>
-            <th scope="col" @click="sortDataById('id')">
+            <th scope="col" @click="sortData('id')">
               <span>Thao tác</span>
               <i class="fa fa-sort" aria-hidden="true"></i>
             </th>
