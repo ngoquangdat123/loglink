@@ -15,14 +15,38 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col"><span>ID</span></th>
-            <th scope="col"><span>Cell Phone</span></th>
-            <th scope="col"><span>Company Name</span></th>
-            <th scope="col"><span>Contact Address</span></th>
-            <th scope="col"><span>Company Logo Url</span></th>
-            <th scope="col"><span>Coin</span></th>
-            <th scope="col"><span>User</span></th>
-            <th scope="col"><span>Thao tác</span></th>
+            <th scope="col" @click="sortDataById('id')">
+              <span>ID</span>
+              <i class="fa fa-sort" aria-hidden="true"></i>
+            </th>
+            <th scope="col" @click="sortDataById('cellPhone')">
+              <span>Cell Phone</span>
+              <i class="fa fa-sort" aria-hidden="true"></i>
+            </th>
+            <th scope="col" @click="sortDataById('companyName')">
+              <span>Company Name</span>
+              <i class="fa fa-sort" aria-hidden="true"></i>
+            </th>
+            <th scope="col" @click="sortDataById('contactAddress')">
+              <span>Contact Address</span>
+              <i class="fa fa-sort" aria-hidden="true"></i>
+            </th>
+            <th scope="col" @click="sortDataById('companyLogoUrl')">
+              <span>Company Logo Url</span>
+              <i class="fa fa-sort" aria-hidden="true"></i>
+            </th>
+            <th scope="col" @click="sortDataById('coin')">
+              <span>Coin</span>
+              <i class="fa fa-sort" aria-hidden="true"></i>
+            </th>
+            <th scope="col" @click="sortDataById('user')">
+              <span>User</span>
+              <i class="fa fa-sort" aria-hidden="true"></i>
+            </th>
+            <th scope="col" @click="sortDataById('id')">
+              <span>Thao tác</span>
+              <i class="fa fa-sort" aria-hidden="true"></i>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -37,7 +61,7 @@
             <td class="td-actions text-right">
               <div class="d-flex">
                 <button type="button" class="btn btn-primary" @click="viewDetail(item.id)">Xem</button>
-                <button type="button" class="btn btn-warning">Sửa</button>
+                <button type="button" class="btn btn-warning" @click="updateItem(item.id)">Sửa</button>
                 <button type="button" class="btn btn-danger" @click="deleteItem(item.id)">xóa</button>
               </div>
             </td>
@@ -58,11 +82,15 @@ export default {
   mixins: [validateMixins, globalMixins],
   data () {
     return {
+      sort: false,
+      sortById: true,
+      sortType: 'asc',
+      paramSort: 'id',
       listUser: [],
       formData: {
         page: 0,
         size: 20,
-        sort: 'id,asc'
+        sort: ''
       }
     }
   },
@@ -70,8 +98,29 @@ export default {
     await this.getListUser()
   },
   methods: {
+    async sortDataById (param) {
+      this.paramSort = param
+      this.sortById = !this.sortById
+      if (this.sortById) {
+        this.sortType = 'asc'
+      } else {
+        this.sortType = 'desc'
+      }
+      await this.getListUser()
+    },
+    async sortData (param) {
+      this.paramSort = param
+      this.sort = !this.sort
+      if (this.sort) {
+        this.sortType = 'asc'
+      } else {
+        this.sortType = 'desc'
+      }
+      await this.getListUser()
+    },
     async getListUser () {
       try {
+        this.formData.sort = this.paramSort + ',' + this.sortType
         const res = await userProfileService.listUserProfile(this.serialize(this.formData))
         if (res && res.length) {
           this.listUser = res
@@ -93,6 +142,9 @@ export default {
     },
     viewDetail(id) {
       this.$router.push(`/user-profile/detail?id=${id}`)
+    },
+    updateItem(id) {
+      this.$router.push(`/user-profile/edit?id=${id}`)
     },
     deleteItem (id) {
       Swal.fire({
@@ -146,6 +198,26 @@ export default {
     margin-bottom: 3rem;
     h3 {
       text-transform: uppercase;
+    }
+  }
+  &__content {
+    table {
+      th {
+        .fa-sort {
+          margin-left: 5px;
+        }
+        &:hover {
+          cursor: pointer;
+          span {
+            color: #5e72e4;
+          }
+          .fa-sort {
+            &:before {
+              color: #5e72e4;
+            }
+          }
+        }
+      }
     }
   }
 }

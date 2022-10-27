@@ -1,47 +1,73 @@
 <template>
   <div class="container update-user">
     <div class="update-user__header">
-      <h3>CẬP NHẬT USER PROFILE</h3>
+      <h3>CẬP NHẬT USER PROFILE {{ formData.id }}</h3>
     </div>
     <div class="update-user__content">
       <div class="row">
         <div class="col-md-12">
-          <BaseSelect
-              ref="serviceType"
-              :input-value="formData.serviceType"
-              name="serviceType"
-              label="Service Type"
-              :items="listServiceType"
-              :is-show-default="false"
-              required
-              error-required="Trường Service Type không được để trống!"
-              @change="formData.serviceType = $event"
+          <BaseInputCustom
+              ref="id"
+              v-model="formData.id"
+              class-name="theme-light"
+              name="id"
+              disabled
+              label="ID"
+              type="number"
           />
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <BaseInputCustom
-              ref="origin"
-              v-model="formData.origin"
+              ref="cellPhone"
+              v-model="formData.cellPhone"
               class-name="theme-light"
-              name="origin"
+              name="cellPhone"
               required
-              label="Origin"
+              label="Cell Phone"
               type="text"
-              error-required="Trường Origin không được để trống!"
+              error-required="Trường Cell Phone không được để trống!"
           />
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <BaseInputCustom
-              ref="destination"
-              v-model="formData.destination"
+              ref="companyName"
+              v-model="formData.companyName"
               class-name="theme-light"
-              name="destination"
+              name="companyName"
               required
-              label="Destination"
+              label="Company Name"
+              type="text"
+              error-required="Trường Company Name không được để trống!"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <BaseInputCustom
+              ref="contactAddress"
+              v-model="formData.contactAddress"
+              class-name="theme-light"
+              name="contactAddress"
+              required
+              label="Contact Address"
+              type="text"
+              error-required="Trường Contact Address không được để trống!"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <BaseInputCustom
+              ref="companyLogoUrl"
+              v-model="formData.companyLogoUrl"
+              class-name="theme-light"
+              name="companyLogoUrl"
+              required
+              label="Company Logo Url"
               type="text"
               error-required="Trường Destination không được để trống!"
           />
@@ -49,14 +75,30 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <BaseDatePicker
-              ref="expectedDate"
-              v-model="formData.expectedDate"
+          <BaseInputCustom
+              ref="coin"
+              v-model="formData.coin"
               class-name="theme-light"
-              name="expectedDate"
-              label="Expected Date"
-              type="text"
+              name="coin"
+              label="Coin"
+              type="number"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <BaseSelect
+              ref="user"
+              :input-value="formData.userId"
+              name="user"
+              label="User"
+              :items="listUser"
+              value-field="id"
+              text-field="login"
+              :is-show-default="false"
               required
+              error-required="Trường User không được để trống!"
+              @change="formData.userId = $event"
           />
         </div>
       </div>
@@ -70,7 +112,7 @@
         <button
             type="button"
             class="btn btn-3 btn-icon btn-primary btn-lg"
-            @click.prevent="addRfq"
+            @click.prevent="updateUserProfile"
         >
           <span class="btn-inner--icon">
             <i class="ni ni-bag-17" />
@@ -83,26 +125,24 @@
 </template>
 <script>
 import BaseInputCustom from '../Common/BaseInputCustom'
-import BaseDatePicker from '../Common/BaseDatePicker'
 import BaseSelect from '../Common/BaseSelect'
-import { auctionService } from '@/services/auction.service'
+import {userProfileService} from '@/services/user-profile.service'
+import {userService} from '@/services/user.services'
 import validateMixins from '../../../mixins/validate'
-import moment from "moment";
+import Swal from "sweetalert2";
+
 export default {
   components: {
     BaseInputCustom,
-    BaseDatePicker,
     BaseSelect
   },
   mixins: [validateMixins],
   data () {
     return {
       isValid: true,
-      listServiceType: [
-        'SEA',
-        'TRUCK'
-      ],
+      listUser: [],
       formData: {
+        id: '',
         cellPhone: '',
         coin: '',
         companyLogoUrl: '',
@@ -112,26 +152,78 @@ export default {
       }
     }
   },
-  created () {
+  async created () {
+    await this.getDetail()
+    await this.getListUser()
   },
   methods: {
-    async addRfq () {
+    async getDetail () {
+      const id = this.$route.query.id
       try {
-        const refs = ['serviceType', 'origin', 'destination', 'expectedDate']
-        const refsValid = this.$_validateMixin_refs(refs)
-        if (refsValid) {
-          const res = await auctionService.addRfq(this.formData)
-          console.log(res)
-        }
+        const res = await userProfileService.detailUserProfile(id)
+        this.formData.id = res.id
+        this.formData.cellPhone = res.cellPhone
+        this.formData.coin = res.coin
+        this.formData.companyLogoUrl = res.companyLogoUrl
+        this.formData.companyName = res.companyName
+        this.formData.contactAddress = res.contactAddress
+        this.formData.userId = res.userId
+      }catch (e) {
+        console.log(e)
+      }
+    },
+    async getListUser () {
+      try {
+        const res = await userService.getAll()
+        this.listUser = res.filter(data => data.login)
       } catch (e) {
         console.log(e)
+      }
+    },
+    async updateUserProfile () {
+      try {
+        const refs = ['cellPhone', 'companyLogoUrl', 'companyName', 'contactAddress', 'user']
+        const refsValid = this.$_validateMixin_refs(refs)
+        if (refsValid) {
+          const res = await userProfileService.updateUserProfile(this.formData)
+          await Swal.fire({
+            title: `Cập nhật user profile thành công với định danh là ${res.userId}`,
+            text: ``,
+            icon: 'success',
+            showCloseButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'OK',
+            customClass: {
+              title: 'delete'
+            }
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+              await this.$router.push('/user-profile')
+            }
+          });
+        }
+      } catch (e) {
+        await Swal.fire({
+          title: `Lỗi`,
+          text: e,
+          icon: 'error',
+          showCloseButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'OK',
+          customClass: {
+            title: 'delete'
+          }
+        })
       }
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-.require-price {
+/deep/.section {
+  padding-bottom: 12rem;
+}
+.update-user {
   &__header {
     display: flex;
     justify-content: space-between;
