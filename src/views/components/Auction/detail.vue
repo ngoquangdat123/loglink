@@ -6,13 +6,13 @@
     <div class="detail-auction__content shadow">
       <div class="detail-auction__breadcrumb">
         <a @click="$router.push('/auction')">
-          <img src="img/auction/icon-back.svg" class="icon-back">
+          <img src="/img/auction/icon-back.svg" class="icon-back">
           <span>Back to auction list</span>
         </a>
       </div>
       <div class="content-top">
         <div class="top-item">
-          <img src="img/auction/icon-plain.png" class="icon-start">
+          <img src="/img/auction/icon-plain.png" class="icon-start">
           <span class="value">{{ item.origin }}</span>
         </div>
         <div id="arrowAnim">
@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="top-item">
-          <img src="img/auction/icon-plain.png" class="icon-end">
+          <img src="/img/auction/icon-plain.png" class="icon-end">
           <span class="value">{{ item.destination }}</span>
         </div>
       </div>

@@ -36,12 +36,12 @@ export default {
 
 <style scoped lang="scss">
 .auction-item {
-  background: #000000;
+  background: #ffffff;
   cursor: pointer;
-  background-image: url('/img/auction/bg-auction.png');
+  // background-image: url('/img/auction/bg-auction.png');
   background-size: cover;
   .card-body {
-    color: #ffffff;
+    color: #000000;
     p {
       white-space: nowrap;
       text-overflow: hidden;

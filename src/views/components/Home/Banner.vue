@@ -15,16 +15,16 @@
             <b-carousel id="carousel1" controls indicators>
               <!-- Text slides with image -->
               <b-carousel-slide
-                img-src="img/home/banner-1.jpg"
+                img-src="/img/home/banner-1.jpg"
               ></b-carousel-slide>
               <b-carousel-slide
-                img-src="img/home/banner-2.jpg"
+                img-src="/img/home/banner-2.jpg"
               ></b-carousel-slide>
               <b-carousel-slide
-                img-src="img/home/banner-3.jpg"
+                img-src="/img/home/banner-3.jpg"
               ></b-carousel-slide>
               <b-carousel-slide
-                img-src="img/home/banner-4.jpg"
+                img-src="/img/home/banner-4.jpg"
               ></b-carousel-slide>
             </b-carousel>
           </div>
