@@ -70,6 +70,7 @@ export default {
 
 <style scoped lang="scss">
 .update-quote-sea {
+  min-height: 70vh;
   &__header {
     display: flex;
     justify-content: center;
