@@ -46,6 +46,7 @@
 
 <script>
 import BaseInputFile from "@/views/components/Common/BaseInputFile";
+import {uploadService} from "@/services/upload-file.service";
 export default {
   name: "upload-quote-trucking",
   components: {
@@ -63,6 +64,14 @@ export default {
     handleFile (val) {
       this.formData.file = [val]
       this.disable = false
+    },
+    uploadFile () {
+      try {
+        const res = uploadService.uploadTruckingQuote(this.formData.file)
+        console.log(res)
+      } catch(e) {
+        console.log(e)
+      }
     }
   }
 }

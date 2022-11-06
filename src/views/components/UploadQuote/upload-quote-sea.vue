@@ -35,6 +35,7 @@
                 type="button"
                 class="btn btn-1 btn-primary"
                 :class="{'disabled': disable}"
+                @click="uploadFile"
             >
               <span>Upload</span>
             </button>
@@ -45,6 +46,7 @@
 </template>
 
 <script>
+import { uploadService } from '@/services/upload-file.service'
 import BaseInputFile from "@/views/components/Common/BaseInputFile";
 export default {
   name: "upload-quote-sea",
@@ -63,6 +65,14 @@ export default {
     handleFile (val) {
       this.formData.file = [val]
       this.disable = false
+    },
+    uploadFile () {
+      try {
+        const res = uploadService.uploadSeaQuote(this.formData.file)
+        console.log(res)
+      } catch(e) {
+        console.log(e)
+      }
     }
   }
 }
