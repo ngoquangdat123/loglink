@@ -1,25 +1,16 @@
 <template>
   <div class="container-row">
-    <div v-if="method === 'Truck'" class="row">
-      <div class="col-md-6">
-        <BaseInputCustom
-          ref="totalDistanceKm"
-          v-model="formDataRow.totalDistanceKm"
-          class-name="theme-light"
-          name="totalDistanceKm"
-          label="Total Distance Km"
-          :is-pin="true"
-          type="number"
-        />
-      </div>
-    </div>
     <div class="container-option">
       <div class="row title">
         <div class="col-md-6">
           <p>CONTAINER OPTIONS:</p>
         </div>
         <div class="col-md-6">
-          <button type="button" class="btn btn-1 btn-primary" @click="numberElement++">
+          <button
+            type="button"
+            class="btn btn-1 btn-primary"
+            @click="numberElement++"
+          >
             Add
           </button>
         </div>
@@ -52,7 +43,7 @@
           </div>
           <div class="col-md-4">
             <button
-              style="margin-top: 22px;"
+              style="margin-top: 22px"
               type="button"
               class="btn btn-1 btn-danger"
               @click="numberElement--"
@@ -67,45 +58,44 @@
 </template>
 
 <script>
-import BaseInputCustom from '../../Common/BaseInputCustom'
-import BaseSelect from '../../Common/BaseSelect'
-import { auctionService } from '../../../../services/auction.service'
+import BaseInputCustom from "../../Common/BaseInputCustom";
+import BaseSelect from "../../Common/BaseSelect";
+import { auctionService } from "../../../../services/auction.service";
 export default {
-  name: 'ContainerRow',
+  name: "ContainerRow",
   components: {
     BaseInputCustom,
-    BaseSelect
+    BaseSelect,
   },
   props: {
     method: {
       type: String,
-      default: ''
-    }
+      default: "",
+    },
   },
-  data () {
+  data() {
     return {
       numberElement: 0,
       listContainerType: [],
       formDataRow: {
-        containerType: '',
-        totalDistanceKm: '',
-        numberOfContainer: 1
-      }
-    }
+        containerType: "",
+        numberOfContainer: 1,
+      },
+    };
   },
-  async created () {
-    await this.getContainerType()
+  async created() {
+    await this.getContainerType();
   },
   methods: {
-    async getContainerType () {
+    async getContainerType() {
       try {
-        this.listContainerType = await auctionService.getContainerTypes()
+        this.listContainerType = await auctionService.getContainerTypes();
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
@@ -118,7 +108,7 @@ export default {
   }
 }
 .container-option {
-  border: 1px solid rgba(0,0,0,.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
   padding: 25px;
   margin: 15px 0;
 }

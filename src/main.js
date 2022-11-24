@@ -9,6 +9,14 @@ import VueI18n from 'vue-i18n'
 // eslint-disable-next-line import/order
 import Datepicker from 'vuejs-datepicker'
 import BootstrapVue from "bootstrap-vue/dist/bootstrap-vue.esm";
+import { LMap, LTileLayer, LMarker, LPolyline  } from 'vue2-leaflet';
+import VueAutosuggest from "vue-autosuggest";
+
+import 'leaflet/dist/leaflet.css';
+Vue.component('l-map', LMap);
+Vue.component('l-tile-layer', LTileLayer);
+Vue.component('l-marker', LMarker);
+Vue.component('l-polyline', LPolyline);
 
 Vue.component('DatePicker', Datepicker)
 Vue.config.productionTip = false
@@ -16,6 +24,7 @@ Vue.use(Argon)
 Vue.use(VueI18n)
 Vue.filter('formatMarkToNumber', formatMarkToNumber)
 Vue.use(BootstrapVue)
+Vue.use(VueAutosuggest);
 
 function formatMarkToNumber (str, multiplier = 1) {
   if (str) {

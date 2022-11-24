@@ -1,7 +1,8 @@
 <template>
   <div class="maps">
-    <div class="search-input">
+    <div class="search-input row">
       <vue-autosuggest
+        class="col-6 search-item"
         v-model="textSearchFrom"
         :suggestions="suggestLocation"
         :get-suggestion-value="getSuggestionValue"
@@ -23,6 +24,7 @@
         </template>
       </vue-autosuggest>
       <vue-autosuggest
+        class="col-6"
         v-model="textSearchTo"
         :suggestions="suggestLocation"
         :get-suggestion-value="getSuggestionValue"
@@ -44,7 +46,7 @@
         </template>
       </vue-autosuggest>
     </div>
-    <l-map style="height: 700px" :zoom="zoom" :center="center" ref="mymap">
+    <l-map style="height: 500px" :zoom="zoom" :center="center" ref="mymap">
       <l-tile-layer
         :url="`https://maps.vietmap.vn/tm/{z}/{x}/{y}@2x.png?apikey=f4a60c6f82f86440cd7079aaad75e7934bd94e097e269f40`"
         attribution="{
@@ -58,53 +60,19 @@
         :lat-lngs="polyline.latlngs"
         :color="polyline.color"
       ></l-polyline>
-      <!-- <l-marker :lat-lng="markerLatLng"></l-marker> -->
     </l-map>
-    <!-- <hero></hero>
-        <basic-elements></basic-elements>
-        <inputs></inputs>
-        <custom-controls></custom-controls>
-        <navigation></navigation>
-        <javascript-components></javascript-components>
-        <icons></icons>
-        <examples></examples>
-        <download-section></download-section>
-        <carousel></carousel> -->
   </div>
 </template>
 <script>
-// import Hero from "./components/Hero";
-// import BasicElements from "./components/BasicElements";
-// import Inputs from "./components/Inputs";
-// import CustomControls from "./components/CustomControls";
-// import Navigation from "./components/Navigation";
-// import JavascriptComponents from "./components/JavascriptComponents";
-// import Carousel from "./components/Carousel";
-// import Icons from "./components/Icons";
-// import Examples from "./components/Examples";
-// import DownloadSection from "./components/DownloadSection";
-// import mapInits from "../core/utils/maps.js";
 import axios from "axios";
 
 export default {
   name: "components",
-  // mixins: [mapInits],
-  components: {
-    // Hero,
-    // BasicElements,
-    // Inputs,
-    // CustomControls,
-    // Navigation,
-    // JavascriptComponents,
-    // Carousel,
-    // Icons,
-    // Examples,
-    // DownloadSection
-  },
+  components: {},
   data() {
     return {
       center: [16.046308, 108.225288],
-      zoom: 13,
+      zoom: 10,
       textSearchFrom: "",
       textSearchTo: "",
       suggestLocation: [],
@@ -114,6 +82,7 @@ export default {
         latlngs: [],
         color: "green",
       },
+      distance: 0,
     };
   },
   watch: {
@@ -153,16 +122,6 @@ export default {
     },
     selectHandlerTo(item) {
       this.selectedTo = item.item;
-      // this.polyline.latlngs = [
-      //   [
-      //     this.selectedFrom.geometry.coordinates[1],
-      //     this.selectedFrom.geometry.coordinates[0],
-      //   ],
-      //   [
-      //     this.selectedTo.geometry.coordinates[1],
-      //     this.selectedTo.geometry.coordinates[0],
-      //   ],
-      // ];
       this.distancePoint();
     },
     getSuggestionValue(suggestion) {
@@ -179,7 +138,25 @@ export default {
             res.data.paths[0].points.coordinates.forEach((element) => {
               this.polyline.latlngs.push([element[1], element[0]]);
             });
-            console.log("=====asdasdasdasdas1", this.polyline.latlngs);
+            this.center =
+              this.polyline.latlngs[parseInt(this.polyline.latlngs.length / 2)];
+            this.distance = res.data.paths[0].distance;
+            if (this.distance > 10000000) {
+              this.zoom = 3;
+            } else if (this.distance > 1000000) {
+              this.zoom = 5;
+            } else if (this.distance > 500000) {
+              this.zoom = 6;
+            } else if (this.distance > 100000) {
+              this.zoom = 8;
+            }
+            const formData = {
+              from: this.selectedFrom.properties.label,
+              to: this.selectedTo.properties.label,
+              distance: this.distance / 1000,
+            };
+            console.log("asd=áda", formData);
+            this.$emit("submitMap", formData);
           }
         } catch (error) {
           console.log("e", error);
@@ -191,12 +168,24 @@ export default {
 </script>
 <style lang="scss" scoped>
 .maps {
+  width: 100%;
   position: relative;
   .search-input {
-    position: absolute;
-    top: 30px;
-    left: 60px;
-    z-index: 9999;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    /deep/ input {
+      width: 100%;
+      height: 40px;
+      border-radius: 8px;
+      border: none;
+      padding: 8px 12px;
+      width: 100%;
+      font-size: 18px;
+      line-height: 26px;
+      background: #f7f7f7;
+      color: #141822;
+    }
   }
   .my-suggestion-item {
     z-index: 9999;
@@ -206,7 +195,11 @@ export default {
   &__results-container {
     background: #ffffff;
     border-radius: 8px;
-    width: 400px;
+    position: absolute;
+    top: 44px;
+    z-index: 99999;
+    background: #e1e1e1;
+    width: 100%;
     ul {
       width: 100%;
       color: rgba(30, 39, 46, 1);
