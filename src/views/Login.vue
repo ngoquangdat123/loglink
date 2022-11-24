@@ -25,10 +25,10 @@
                 <small>Sign in with</small>
               </div>
               <div class="btn-wrapper text-center">
-                <base-button type="neutral">
+                <!-- <base-button type="neutral">
                   <img slot="icon" src="img/icons/common/github.svg" />
                   Github
-                </base-button>
+                </base-button> -->
 
                 <base-button type="neutral">
                   <img slot="icon" src="img/icons/common/google.svg" />

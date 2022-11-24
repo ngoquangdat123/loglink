@@ -26,9 +26,12 @@
           <div class="form-group base-input-custom theme-light">
             <div class="input-group-alternative base-input-custom__wrap">
               <label>Origin</label>
-              <input list="origin" v-model="formData.origin">
+              <input list="origin" v-model="formData.origin" />
               <datalist id="origin">
-                <option v-for="(item, index) in listSea" :value="index + '-' +item.city" />
+                <option
+                  v-for="(item, index) in listSea"
+                  :value="index + '-' + item.city"
+                />
               </datalist>
             </div>
           </div>
@@ -37,37 +40,55 @@
           <div class="form-group base-input-custom theme-light">
             <div class="input-group-alternative base-input-custom__wrap">
               <label>Destination</label>
-              <input list="destination" v-model="formData.destination">
+              <input list="destination" v-model="formData.destination" />
               <datalist id="destination">
-                <option v-for="(item, index) in listSea" :value="index + '-' +item.city" />
+                <option
+                  v-for="(item, index) in listSea"
+                  :value="index + '-' + item.city"
+                />
               </datalist>
             </div>
           </div>
         </div>
       </div>
-      <div v-else class="row">
+      <div v-else-if="formData.transportMethodId !== 2" class="row">
         <div class="col-md-6">
           <BaseInputCustom
-              ref="origin"
-              v-model="formData.origin"
-              class-name="theme-light"
-              name="origin"
-              required
-              label="Origin"
-              type="text"
-              error-required="Trường Origin không được để trống!"
+            ref="origin"
+            v-model="formData.origin"
+            class-name="theme-light"
+            name="origin"
+            required
+            label="Origin"
+            type="text"
+            error-required="Trường Origin không được để trống!"
           />
         </div>
         <div class="col-md-6">
           <BaseInputCustom
-              ref="destination"
-              v-model="formData.destination"
-              class-name="theme-light"
-              name="destination"
-              required
-              label="Destination"
-              type="text"
-              error-required="Trường Destination không được để trống!"
+            ref="destination"
+            v-model="formData.destination"
+            class-name="theme-light"
+            name="destination"
+            required
+            label="Destination"
+            type="text"
+            error-required="Trường Destination không được để trống!"
+          />
+        </div>
+      </div>
+      <div class="row" v-if="formData.transportMethodId === 2">
+        <Maps @submitMap="onSelectMap" />
+        <div class="col-md-6 mt-4">
+          <BaseInputCustom
+            ref="totalDistanceKm"
+            v-model="formData.distance"
+            class-name="theme-light"
+            name="totalDistanceKm"
+            label="Total Distance Km"
+            :is-pin="true"
+            type="number"
+            disabled
           />
         </div>
       </div>
@@ -185,13 +206,18 @@
             @change="formData.term = $event"
           />
         </div>
-        <div v-if="formData.transportMethodId === 4 || formData.transportMethodId === 3" class="col-md-4">
+        <div
+          v-if="
+            formData.transportMethodId === 4 || formData.transportMethodId === 3
+          "
+          class="col-md-4"
+        >
           <p
             style="
-                font-size: 12px;
-                line-height: 16px;
-                color: #000000;
-                margin-bottom: 8px;
+              font-size: 12px;
+              line-height: 16px;
+              color: #000000;
+              margin-bottom: 8px;
             "
             class="base-select__label"
           >
@@ -206,10 +232,7 @@
               :true-value="true"
               :false-value="false"
               @change="changeValueTranShip"
-            ><label
-              for="zolwYUt"
-              class="custom-control-label"
-            >
+            /><label for="zolwYUt" class="custom-control-label">
               Tranship
             </label>
           </div>
@@ -274,93 +297,108 @@
   </div>
 </template>
 <script>
-import BaseInputCustom from '../Common/BaseInputCustom'
-import BaseDatePicker from '../Common/BaseDatePicker'
-import BaseSelect from '../Common/BaseSelect'
-import { auctionService } from '@/services/auction.service'
-import validateMixins from '../../../mixins/validate'
-import ContainerSea from './create-container/container-sea'
-import ContainerRow from './create-container/container-row'
-const ports = require('sea-ports');
+import BaseInputCustom from "../Common/BaseInputCustom";
+import BaseDatePicker from "../Common/BaseDatePicker";
+import BaseSelect from "../Common/BaseSelect";
+import { auctionService } from "@/services/auction.service";
+import validateMixins from "../../../mixins/validate";
+import ContainerSea from "./create-container/container-sea";
+import ContainerRow from "./create-container/container-row";
+import Maps from "./create-container/maps";
+
+const ports = require("sea-ports");
 export default {
   components: {
     BaseInputCustom,
     BaseDatePicker,
     BaseSelect,
     ContainerSea,
-    ContainerRow
+    ContainerRow,
+    Maps,
   },
   mixins: [validateMixins],
-  data () {
+  data() {
     return {
       listSea: [],
       numberOfContainer: 0,
       isValid: true,
       listTransportMethod: [],
-      listTerm: [
-        'COLLECT',
-        'PREPAID'
-      ],
+      listTerm: ["COLLECT", "PREPAID"],
       formData: {
-        transportMethod: '',
-        avoidShippingLine: '',
+        transportMethod: "",
+        avoidShippingLine: "",
         closed: false,
         closing: new Date(),
-        commodityDescription: '',
+        commodityDescription: "",
         eta: new Date(),
         etd: new Date(),
-        expectedOffer: '',
-        hsCode: '',
-        maxTransitTime: '',
+        expectedOffer: "",
+        hsCode: "",
+        maxTransitTime: "",
         numberOfContainer: 1,
         opening: new Date(),
-        preferredShippingLine: '',
-        ref: 'BA000000',
-        remark: '',
+        preferredShippingLine: "",
+        ref: "BA000000",
+        remark: "",
         requestDate: new Date(),
-        term: '',
+        term: "",
         tranship: false,
-        transportMethodId: '',
-        winnerIdId: '',
-        destination: '',
-        origin: ''
-      }
-    }
+        transportMethodId: "",
+        winnerIdId: "",
+        destination: "",
+        origin: "",
+        distance: 0,
+      },
+    };
   },
   watch: {
-    'formData.transportMethod' (value) {
-      this.formData.transportMethodId = this.listTransportMethod.filter(data => data.transportMethod === value).shift().id
-    }
+    "formData.transportMethod"(value) {
+      this.formData.transportMethodId = this.listTransportMethod
+        .filter((data) => data.transportMethod === value)
+        .shift().id;
+    },
   },
-  created () {
-    this.listSea = ports.JSON
-    this.getTransportMethod()
+  created() {
+    this.listSea = ports.JSON;
+    this.getTransportMethod();
   },
   methods: {
-    changeValueTranShip (event) {
-      console.log(this.formData.tranship)
+    changeValueTranShip(event) {
+      console.log(this.formData.tranship);
     },
-    async getTransportMethod () {
+    async getTransportMethod() {
       try {
-        this.listTransportMethod = await auctionService.getTransportMethod()
+        this.listTransportMethod = await auctionService.getTransportMethod();
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     },
-    async addAuction () {
+    async addAuction() {
       try {
-        const refs = ['transportMethod', 'origin', 'destination', 'term', 'commodityDescription', 'hsCode']
-        const refsValid = this.$_validateMixin_refs(refs)
+        const refs = [
+          "transportMethod",
+          "origin",
+          "destination",
+          "term",
+          "commodityDescription",
+          "hsCode",
+        ];
+        const refsValid = this.$_validateMixin_refs(refs);
         if (refsValid) {
-          const res = await auctionService.addAuction(this.formData)
-          console.log(res.userId)
+          const res = await auctionService.addAuction(this.formData);
+          console.log(res.userId);
         }
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
-    }
-  }
-}
+    },
+    onSelectMap(item) {
+      this.formData.origin = item.from;
+      this.formData.destination = item.to;
+      this.formData.distance = item.distance;
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 .create-auction {
