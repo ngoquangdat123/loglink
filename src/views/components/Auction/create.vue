@@ -30,6 +30,7 @@
               <datalist id="origin">
                 <option
                   v-for="(item, index) in listSea"
+                  :key="index"
                   :value="index + '-' + item.city"
                 />
               </datalist>
@@ -44,6 +45,7 @@
               <datalist id="destination">
                 <option
                   v-for="(item, index) in listSea"
+                  :key="index"
                   :value="index + '-' + item.city"
                 />
               </datalist>
@@ -393,6 +395,8 @@ export default {
       }
     },
     onSelectMap(item) {
+      console.log("dasdasa", item);
+
       this.formData.origin = item.from;
       this.formData.destination = item.to;
       this.formData.distance = item.distance;

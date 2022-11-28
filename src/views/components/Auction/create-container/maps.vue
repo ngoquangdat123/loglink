@@ -144,18 +144,17 @@ export default {
             if (this.distance > 10000000) {
               this.zoom = 3;
             } else if (this.distance > 1000000) {
-              this.zoom = 5;
-            } else if (this.distance > 500000) {
               this.zoom = 6;
-            } else if (this.distance > 100000) {
+            } else if (this.distance > 500000) {
               this.zoom = 8;
+            } else if (this.distance > 100000) {
+              this.zoom = 9;
             }
             const formData = {
               from: this.selectedFrom.properties.label,
               to: this.selectedTo.properties.label,
               distance: this.distance / 1000,
             };
-            console.log("asd=áda", formData);
             this.$emit("submitMap", formData);
           }
         } catch (error) {

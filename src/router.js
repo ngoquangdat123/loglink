@@ -33,6 +33,9 @@ import TransportRoute from './views/transport-route/index'
 import TransportRouteCreate from './views/transport-route/create.vue'
 import TransportRouteUpdate from './views/transport-route/update.vue'
 import TransportRouteDetail from './views/transport-route/detail.vue'
+import Contact from './views/Contact.vue'
+import News from './views/News.vue'
+
 
 Vue.use(Router);
 
@@ -253,6 +256,24 @@ export default new Router({
       components: {
         header: AppHeader,
         default: TransportRouteUpdate,
+        footer: AppFooter,
+      }
+    },
+    {
+      path: "/contact",
+      name: "Contact",
+      components: {
+        header: AppHeader,
+        default: Contact,
+        footer: AppFooter,
+      }
+    },
+    {
+      path: "/news",
+      name: "News",
+      components: {
+        header: AppHeader,
+        default: News,
         footer: AppFooter,
       }
     },
