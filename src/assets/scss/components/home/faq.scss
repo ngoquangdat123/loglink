@@ -1,0 +1,70 @@
+.about-faq {
+  padding-bottom: 98px;
+}
+.panel-heading {
+  border: 1px solid #ddd !important;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 0;
+}
+.panel-title {
+  a {
+    color: #444;
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 49px;
+    padding-left: 30px;
+    position: relative;
+    text-transform: capitalize;
+    .open-faq {
+      position: absolute;
+      right: 15px;
+      top: 1px;
+      visibility: hidden;
+      i {
+        color: #ffc434;
+        font-size: 20px;
+      }
+    }
+    .close-faq {
+      position: absolute;
+      right: 15px;
+      top: 1px;
+      i {
+        color: #ffc434;
+        font-size: 20px;
+      }
+    }
+  }
+  a.collapsed {
+    .open-faq {
+      visibility: visible;
+    }
+    .close-faq {
+      opacity: 0;
+    }
+  }
+}
+.logistics-content-area {
+  .panel {
+    background: transparent none repeat scroll 0 0;
+    border: 0 none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin-bottom: 11px;
+    &:last-child {
+      margin-bottom: 0px !important;
+    }
+  }
+  .panel-body {
+    border: 1px solid #ddd !important;
+    color: #777;
+    font-size: 14px;
+    line-height: 29px;
+    padding: 22px 20px 22px 28px;
+  }
+  .panel-group {
+    margin-bottom: 0px !important;
+  }
+}
